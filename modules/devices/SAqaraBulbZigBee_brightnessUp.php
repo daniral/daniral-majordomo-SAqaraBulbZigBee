@@ -19,8 +19,8 @@ if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
 
 $brightness += $inc;
 
-if ($brightness > $this->getProperty('brightnessMax')) {
-  $brightness = $this->getProperty('brightnessMax');
+if ($brightness > 100) {
+  $brightness = 100;
 }
 
 if ($brightness == $this->getProperty('brightness')) {

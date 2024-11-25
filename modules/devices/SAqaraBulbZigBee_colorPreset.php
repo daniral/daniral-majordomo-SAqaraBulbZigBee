@@ -10,15 +10,15 @@ $pset;
 if (isset($params[value])) {
   $pset = $params[value];
   if ($pset == 'C' || $pset == 'c') {
-    $colorSet = 153;
+    $colorSet = 0;
   } else if ($pset == 'N' || $pset == 'n') {
-    $colorSet = 250;
+    $colorSet = 50;
   } else if ($pset == 'W' || $pset == 'w') {
-    $colorSet = 370;
+    $colorSet = 100;
   } else {
     return;
   }
-  if ($this->getProperty('color_temp') == $colorSet) {
+  if ($this->getProperty('color') == $colorSet) {
     return;
   }
   $this->callMethod('setColor', array('value' => $colorSet));

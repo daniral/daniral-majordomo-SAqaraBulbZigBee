@@ -2,12 +2,11 @@
 /*
 Увеличить температуру.(array("value"=>1-50))
 Без  параметров +10.
-Увеличивает максимум до color_tempMax
+Увеличивает максимум до colorMax
 */
 
 $inc;
-$color = $this->getProperty('color_temp');
-$c_max = $this->getProperty('color_tempMax');
+$color = $this->getProperty('color');
 
 if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
   $inc = $params[value];
@@ -20,11 +19,11 @@ if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
 
 $color += $inc;
 
-if ($color > $c_max) {
-  $color = $c_max;
+if ($color > 100) {
+  $color = 100;
 }
 
-if ($color == $this->getProperty('color_temp')) {
+if ($color == $this->getProperty('color')) {
   return;
 }
 
