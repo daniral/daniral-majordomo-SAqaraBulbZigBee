@@ -9,7 +9,7 @@ if ($colorLevelNew == $colorLevelOld || ($colorLevelNew < 0 && $colorLevelNew > 
 if ($colorMinWork != $colorMaxWork) {
 	$colorLevelWork = round($colorMinWork + round(($colorMaxWork - $colorMinWork) * $colorLevelNew / 100));
 	$diffcctLevel = abs($colorLevelOld - $colorLevelWork);
-	if ($diffcctLevel >= 3) {
+	if ($diffcctLevel >= 2) {
 		$this->setProperty('colorWork', $colorLevelWork);
         $this->setProperty('colorSeved', $colorLevelNew);
         if (!$this->getProperty('brightness')) {

@@ -9,7 +9,7 @@ if ($brightLevelNew == $brightLevelOld || ($brightLevelNew < 0 && $brightLevelNe
 if ($brightMinWork != $brightMaxWork) {
     $brightLevelWork = round($brightMinWork + round(($brightMaxWork - $brightMinWork) * $brightLevelNew / 100));
     $diffbrightLevel = abs($brightLevelOld - $brightLevelWork);
-    if ($diffbrightLevel >= 3) {
+    if ($diffbrightLevel >= 2) {
         $this->setProperty('brightnessWork', $brightLevelWork);
         if ($brightLevelNew > 0 && $this->getProperty('flag')) {
             $this->setProperty('brightnessSeved', $brightLevelNew);
