@@ -21,7 +21,3 @@ if (isset($params['value']) && $params['value'] >= 0 && $params['value'] <= 100)
 }
 
 $this->setProperty('color', $new_color);
-
-if (!$this->getProperty('brightness')) {
-	$this->setProperty('brightness', $brightnessSeved ? $brightnessSeved : 100);
-}
