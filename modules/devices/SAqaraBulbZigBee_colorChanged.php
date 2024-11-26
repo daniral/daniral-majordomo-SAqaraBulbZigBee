@@ -3,6 +3,7 @@ $colorLevelNew = $params['NEW_VALUE'];
 $colorLevelOld = $params['OLD_VALUE'];
 $colorMinWork = $this->getProperty('colorMin');
 $colorMaxWork = $this->getProperty('colorMax');
+$brightnessSeved=$this->getProperty('brightnessSeved');
 
 if ($colorLevelNew == $colorLevelOld || ($colorLevelNew < 0 && $colorLevelNew > 100)) return;
 
