@@ -2,8 +2,8 @@
 
 $dictionary = array(
 
- 'SAqaraBulbZigBee_PATTERN_BRIGHTNESS' => 'ярк|ярч|яркость',
- 'SAqaraBulbZigBee_PATTERN_COLORTEMPERATURE' => 'температур|температура|цвет|теплота'
+ 'SDimmersCct_PATTERN_BRIGHTNESS' => 'ярк|ярч|яркость',
+ 'SDimmersCct_PATTERN_TEMPERATURE' => 'температур|температура|цвет|теплота'
 
 );
 

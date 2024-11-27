@@ -2,10 +2,10 @@
 /*
 Увеличить яркость.(array('value'=>1-50))
 Без  параметров +10.
-Увеличит максимум до brightnessMax.
+Увеличит максимум до brightnessWorkMax.
 */
 
-$brightness = $this->getProperty('brightness');
+$brightnessLevel = $this->getProperty('brightnessLevel');
 $inc;
 
 if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
@@ -17,14 +17,14 @@ if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
   $inc = '10';
 }
 
-$brightness += $inc;
+$brightnessLevel += $inc;
 
-if ($brightness > 100) {
-  $brightness = 100;
+if ($brightnessLevel > 100) {
+  $brightnessLevel = 100;
 }
 
-if ($brightness == $this->getProperty('brightness')) {
+if ($brightnessLevel == $this->getProperty('brightnessLevel')) {
   return;
 }
 
-$this->callMethod('setBrightness', array('value' => $brightness));
+$this->callMethod('setBrightnessLevel', array('value' => $brightnessLevel));

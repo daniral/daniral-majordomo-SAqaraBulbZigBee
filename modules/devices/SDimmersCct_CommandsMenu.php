@@ -284,7 +284,7 @@ $Record['MAX_VALUE']=100;
 $Record['CUR_VALUE']='100';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='dayBrightness';
+$Record['LINKED_PROPERTY']='dayBrightnessLevel';
 $R18=SQLInsert('commands', $Record);
 //Menu-21
 $Record = Array();
@@ -300,7 +300,7 @@ $Record['MAX_VALUE']=100;
 $Record['CUR_VALUE']='10';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='nightBrightness';
+$Record['LINKED_PROPERTY']='nightBrightnessLevel';
 $R20=SQLInsert('commands', $Record);
 //Menu-22
 $Record = Array();
@@ -316,7 +316,7 @@ $Record['MAX_VALUE']=1000;
 $Record['CUR_VALUE']='254';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='brightnessMax';
+$Record['LINKED_PROPERTY']='brightnessWorkMax';
 $R20=SQLInsert('commands', $Record);
 //Menu-23
 $Record = Array();
@@ -332,7 +332,7 @@ $Record['MAX_VALUE']=1000;
 $Record['CUR_VALUE']='0';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='brightnessMin';
+$Record['LINKED_PROPERTY']='brightnessWorkMin';
 $R20=SQLInsert('commands', $Record);
 //Menu-24
 $Record = Array();
@@ -358,7 +358,7 @@ $Record['MAX_VALUE']=100;
 $Record['CUR_VALUE']='0';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='dayColor';
+$Record['LINKED_PROPERTY']='dayColorLevel';
 $R19=SQLInsert('commands', $Record);
 //Menu-26
 $Record = Array();
@@ -374,7 +374,7 @@ $Record['MAX_VALUE']=100;
 $Record['CUR_VALUE']='100';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='nightColor';
+$Record['LINKED_PROPERTY']='nightColorLevel';
 $R21=SQLInsert('commands', $Record);
 //Menu-27
 $Record = Array();
@@ -390,7 +390,7 @@ $Record['MAX_VALUE']=1000;
 $Record['CUR_VALUE']='370';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='colorMax';
+$Record['LINKED_PROPERTY']='colorWorkMax';
 $R19=SQLInsert('commands', $Record);
 //Menu-28
 $Record = Array();
@@ -406,5 +406,5 @@ $Record['MAX_VALUE']=1000;
 $Record['CUR_VALUE']='153';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='colorMin';
+$Record['LINKED_PROPERTY']='colorWorkMin';
 $R21=SQLInsert('commands', $Record);

@@ -18,8 +18,8 @@ if (isset($params[value])) {
   } else {
     return;
   }
-  if ($this->getProperty('color') == $colorSet) {
+  if ($this->getProperty('colorLevel') == $colorSet) {
     return;
   }
-  $this->callMethod('setColor', array('value' => $colorSet));
+  $this->callMethod('setColorLevel', array('value' => $colorSet));
 }

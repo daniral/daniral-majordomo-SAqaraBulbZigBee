@@ -1,11 +1,11 @@
 <?php
 /*
-Установить яркость света.(array("value"=>brightnessMin <--> brightnessMax))
-Без  параметров то что в brightnessSeved.
-Если brightnessSeved пусто то brightnessMax.
+Установить яркость света.(array("value"=>brightnessWorkMin <--> brightnessWorkMax))
+Без  параметров то что в brightnessLevelSeved.
+Если brightnessLevelSeved пусто то brightnessWorkMax.
 */
 
-$b_seved = $this->getProperty('brightnessSeved');
+$b_seved = $this->getProperty('brightnessLevelSeved');
 $new_brightLevel;
 
 $this->setProperty('flag', '1');
@@ -22,4 +22,4 @@ if (isset($params['value']) && $params['value'] >= 0 && $params['value'] <= 100)
 	$new_brightLevel = 100;
 }
 
-$this->setProperty('brightness', $new_brightLevel);
+$this->setProperty('brightnessLevel', $new_brightLevel);

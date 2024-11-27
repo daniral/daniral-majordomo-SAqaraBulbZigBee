@@ -1,12 +1,12 @@
 <?php
 /*
 Уменьшить яркость на (array("value"=>1-50))
-уменьшает минимум до brightnessMin+5.
+уменьшает минимум до brightnessWorkMin+5.
 Без  параметров 10.
 */
 
 $inc;
-$brightness = $this->getProperty('brightness');
+$brightnessLevel = $this->getProperty('brightnessLevel');
 
 if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
   $inc = $params[value];
@@ -17,14 +17,14 @@ if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
   $inc = '-10';
 }
 
-$brightness += $inc;
+$brightnessLevel += $inc;
 
-if ($brightness < 3) {
-  $brightness = 3;
+if ($brightnessLevel < 3) {
+  $brightnessLevel = 3;
 }
 
-if ($brightness == $this->getProperty('brightness')) {
+if ($brightnessLevel == $this->getProperty('brightnessLevel')) {
   return;
 }
 
-$this->callMethod('setBrightness', array('value' => $brightness));
+$this->callMethod('setBrightnessLevel', array('value' => $brightnessLevel));

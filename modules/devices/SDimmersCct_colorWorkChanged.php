@@ -2,12 +2,12 @@
 
 $colorWorkNew = $params['NEW_VALUE'];
 $colorWorkOld = $params['OLD_VALUE'];
-$colorMinWork = $this->getProperty('colorMin');
-$colorMaxWork = $this->getProperty('colorMax');
+$colorWorkMin = $this->getProperty('colorWorkMin');
+$colorWorkMax = $this->getProperty('colorWorkMax');
 
-if ($colorWorkNew == $colorWorkOld || ($colorWorkNew < $colorMinWork && $colorWorkNew > $colorMaxWork)) return;
+if ($colorWorkNew == $colorWorkOld || ($colorWorkNew < $colorWorkMin && $colorWorkNew > $colorWorkMax)) return;
 
-if ($colorMinWork != $colorMaxWork) {
-	$color = round(($colorWorkNew - $colorMinWork) / (round($colorMaxWork - $colorMinWork)) * 100);
-	$this->setProperty('color', $color);
+if ($colorWorkMin != $colorWorkMax) {
+	$colorLevel = round(($colorWorkNew - $colorWorkMin) / (round($colorWorkMax - $colorWorkMin)) * 100);
+	$this->setProperty('colorLevel', $colorLevel);
 }

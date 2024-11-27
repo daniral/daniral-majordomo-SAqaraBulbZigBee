@@ -1,25 +1,25 @@
 <script type="text/javascript">
-    var dimmer%.object_id%brightness=%.brightness%;
-    var dimmer%.object_id%color=%.color%;
+    var dimmer%.object_id%brightnessLevel=%.brightnessLevel%;
+    var dimmer%.object_id%colorLevel=%.colorLevel%;
     var dimmer%.object_id%Timer=0;
 
     function sendNewbrightness%.object_id%() {
-        //setGlobal("%.object_title%.brightness",dimmer%.object_id%brightness);
-		callMethod('%.object_title%.setBrightness','value='+dimmer%.object_id%brightness);
+        //setGlobal("%.object_title%.brightnessLevel",dimmer%.object_id%brightnessLevel);
+		    callMethod('%.object_title%.setBrightnessLevel','value='+dimmer%.object_id%brightnessLevel);
     }
     function dimmerSetbrightness%.object_id%(val) {
-		dimmer%.object_id%brightness=val;
-        $('#dimmer%.object_id%_bright').html(dimmer%.object_id%brightness);
+		    dimmer%.object_id%brightnessLevel=val;
+        $('#dimmer%.object_id%_bright').html(dimmer%.object_id%brightnessLevel);
         sendNewbrightness%.object_id%();
     }
 
     function sendNewcolor%.object_id%() {
-        //setGlobal("%.object_title%.color",dimmer%.object_id%color);
-		callMethod('%.object_title%.setColor','value='+dimmer%.object_id%color);
+        //setGlobal("%.object_title%.colorLevel",dimmer%.object_id%colorLevel);
+		    callMethod('%.object_title%.setColorLevel','value='+dimmer%.object_id%colorLevel);
     }
     function dimmerSetcolor%.object_id%(val) {
-        dimmer%.object_id%color=val;
-        $('#dimmer%.object_id%_color').html(dimmer%.object_id%color);
+        dimmer%.object_id%colorLevel=val;
+        $('#dimmer%.object_id%_color').html(dimmer%.object_id%colorLevel);
         sendNewcolor%.object_id%();
     }
     
@@ -31,10 +31,10 @@
 
 <p>
 <div class="device-details"> 
-  <span id="dimmer%.object_id%_bright">Яркость: %.brightness%</span>
-  <input id="dimmerSelect%.object_id%" type="range" min="0" max="100" step="1" value="%.brightness%" oninput="dimmerSetbrightness%.object_id%(this.value);">
-  <span id="dimmer%.object_id%_color">Температура: %.color%</span>
-  <input id="dimmerSelect%.object_id%" type="range" min="0" max="100" step="1" value="%.color%" oninput="dimmerSetcolor%.object_id%(this.value);">
+  <span id="dimmer%.object_id%_bright">Яркость: %.brightnessLevel%</span>
+  <input id="dimmerSelect%.object_id%" type="range" min="0" max="100" step="1" value="%.brightnessLevel%" oninput="dimmerSetbrightness%.object_id%(this.value);">
+  <span id="dimmer%.object_id%_color">Температура: %.colorLevel%</span>
+  <input id="dimmerSelect%.object_id%" type="range" min="0" max="100" step="1" value="%.colorLevel%" oninput="dimmerSetcolor%.object_id%(this.value);">
 </div>
 </p>
 </div>

@@ -1,20 +1,20 @@
 <?php
 $colorLevelNew = $params['NEW_VALUE'];
 $colorLevelOld = $params['OLD_VALUE'];
-$colorMinWork = $this->getProperty('colorMin');
-$colorMaxWork = $this->getProperty('colorMax');
-$brightnessSeved=$this->getProperty('brightnessSeved');
+$colorWorkMin = $this->getProperty('colorWorkMin');
+$colorWorkMax = $this->getProperty('colorWorkMax');
+$brightnessLevelSeved=$this->getProperty('brightnessLevelSeved');
 
 if ($colorLevelNew == $colorLevelOld || ($colorLevelNew < 0 && $colorLevelNew > 100)) return;
 
-if ($colorMinWork != $colorMaxWork) {
-	$colorLevelWork = round($colorMinWork + round(($colorMaxWork - $colorMinWork) * $colorLevelNew / 100));
+if ($colorWorkMin != $colorWorkMax) {
+	$colorLevelWork = round($colorWorkMin + round(($colorWorkMax - $colorWorkMin) * $colorLevelNew / 100));
 	$diffcctLevel = abs($colorLevelOld - $colorLevelWork);
 	if ($diffcctLevel >= 2) {
 		$this->setProperty('colorWork', $colorLevelWork);
-        $this->setProperty('colorSeved', $colorLevelNew);
-        if (!$this->getProperty('brightness')) {
-            $this->setProperty('brightness', $brightnessSeved ? $brightnessSeved : 100);
+        $this->setProperty('colorLevelSeved', $colorLevelNew);
+        if (!$this->getProperty('brightnessLevel')) {
+            $this->setProperty('brightnessLevel', $brightnessLevelSeved ? $brightnessLevelSeved : 100);
         }
 	}
 }

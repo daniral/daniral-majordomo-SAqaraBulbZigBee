@@ -1,3 +1,3 @@
 <?php
 
-$this->callMethod('setBrightness', array('value' => 0));
+$this->callMethod('setBrightnessLevel', array('value' => 0));

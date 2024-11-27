@@ -2,12 +2,12 @@
 
 $brightnessWorkNew = $params['NEW_VALUE'];
 $brightnessWorkOld = $params['OLD_VALUE'];
-$brightMinWork = $this->getProperty('brightnessMin');
-$brightMaxWork = $this->getProperty('brightnessMax');
+$brightnessWorkMin = $this->getProperty('brightnessWorkMin');
+$brightnessWorkMax = $this->getProperty('brightnessWorkMax');
 
-if ($brightnessWorkNew == $brightnessWorkOld || ($brightnessWorkNew < $brightMinWork && $brightnessWorkNew > $brightMaxWork)) return;
+if ($brightnessWorkNew == $brightnessWorkOld || ($brightnessWorkNew < $brightnessWorkMin && $brightnessWorkNew > $brightnessWorkMax)) return;
 
-if ($brightMinWork != $brightMaxWork) {
-    $brightness = round(($brightnessWorkNew - $brightMinWork) / (round($brightMaxWork - $brightMinWork)) * 100);
-    $this->setProperty('brightness', $brightness);
+if ($brightnessWorkMin != $brightnessWorkMax) {
+    $brightnessLevel = round(($brightnessWorkNew - $brightnessWorkMin) / (round($brightnessWorkMax - $brightnessWorkMin)) * 100);
+    $this->setProperty('brightnessLevel', $brightnessLevel);
 }
