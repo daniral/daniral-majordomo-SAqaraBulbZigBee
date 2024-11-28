@@ -18,6 +18,29 @@
 Минимальные и максимальные рабочие уровни:
 Например для лампочек Xiaomi ZigBee это:
 
+**Надо привязать свойства:**
+- **brightnessWork - brightness лампочки.**
+     - Добавить Путь (write): zigbee2mqtt/Название устройства/set/brightness
+- **colorWork - color_temp лампочки.**
+     - Добавить Путь (write): zigbee2mqtt/Название устройства/set/color_temp
+- **status - state лампочки.**
+     - В статус не добовляем путь(write) так как он нужен только для обратной связи
+что бы знать включена или нет лапочка для сцен или кнопок.
+Минимальные и максимальные рабочие уровни:
+
+**Например для лампочек Xiaomi ZigBee это:**
+- brightnessWorkMax - 254
+- brightnessWorkMin - 0
+- colorWorkMax - 370
+- colorWorkMin - 153
+
+**Для для лампочек Tuta ZigBee это:**
+- brightnessWorkMax - 254
+- brightnessWorkMin - 0
+- colorWorkMax - 500
+- colorWorkMin - 153
+
+
 
 
 Надо привязать к свойствам:
