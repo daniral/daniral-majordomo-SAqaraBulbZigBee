@@ -6,6 +6,8 @@
 Автовыключение по заданному времени.С заданными яркостью и теплотой для дня и ночи.<br>
 Включение по времени суток(Ночь,День,Кгуглосуточно)
 
+<span style="color: red;">**Надо привязать свойства:**</span>
+
 <span style="color: red;"> **Надо привязать свойства:** </span>
 <span style="color: red;">- **brightnessWork - brightness лампочки.** </span>
      - Добавить Путь (write): zigbee2mqtt/Название устройства/set/brightness
