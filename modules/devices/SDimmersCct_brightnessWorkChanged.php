@@ -1,5 +1,12 @@
 <?php
 
+/*
+
+Запускается при изменении рабочнго уровня.
+Переводит в проценты и пишет в brightnessLevel.
+
+*/
+
 $brightnessWorkNew = $params['NEW_VALUE'];
 $brightnessWorkOld = $params['OLD_VALUE'];
 $brightnessWorkMin = $this->getProperty('brightnessWorkMin');

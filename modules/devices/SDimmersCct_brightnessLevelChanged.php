@@ -2,7 +2,8 @@
 
 /*
 
-Переводит рабочие еденицы яркости (brightnessWorkMin <--> brightnessWorkMax) в проценты 0 <--> 100
+Переводит рабочие еденицы яркости (brightnessWorkMin <--> brightnessWorkMax) в проценты (0 <--> 100)
+Сохраняет предыдущее значение уровня в brightnessLevelSeved
 
 */
 

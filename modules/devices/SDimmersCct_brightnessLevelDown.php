@@ -1,8 +1,7 @@
 <?php
 /*
-Уменьшить яркость на (array("value"=>1-50))
-уменьшает минимум до brightnessWorkMin+5.
-Без  параметров 10.
+Уменьшить яркость на (array("value"=>1-50)). Без  параметров на 10.
+уменьшает минимум до 1%.
 */
 
 $inc;
@@ -19,8 +18,8 @@ if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
 
 $brightnessLevel += $inc;
 
-if ($brightnessLevel < 3) {
-  $brightnessLevel = 3;
+if ($brightnessLevel < 1) {
+  $brightnessLevel = 1;
 }
 
 if ($brightnessLevel == $this->getProperty('brightnessLevel')) {
