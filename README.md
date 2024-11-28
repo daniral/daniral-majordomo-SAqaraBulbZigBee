@@ -36,7 +36,7 @@
 Если без параметров установит то что в brightnessLevelSeved и colorLevelSeved.  
 Если brightnessLevelSeved и colorLevelSeved пусто то на полную яркость(100%) и холодный цвет(0%).  
 
-С параметрами:
+С параметрами:  
 - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100, 'colorLevel'=> 0<-->100));  
 - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100));  
 - callMethod('имя объекта.turnOn', array('colorLevel'=> 0<-->100));  
