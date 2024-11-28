@@ -34,25 +34,12 @@
 Если без параметров установит то что в brightnessLevelSeved и colorLevelSeved.<br>
 Если brightnessLevelSeved и colorLevelSeved пусто то на полную яркость(100%) и холодный цвет(0%).<br>
 С параметрами:
-- callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100,'colorLevel'=> 0<-->100));<br>
+- callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100, 'colorLevel'=> 0<-->100));<br>
 - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100));<br>
 - callMethod('имя объекта.turnOn', array('colorLevel'=> 0<-->100));<br>
 Устанавливается flag=1. Стопер который не дает запускаться методу AutoOFF.
 
-
-
-Включить - callMethod('имя объекта '.'turnOn'); 
-  Если без параметров установит то что в brightnessLevelSeved и colorLevelSeved.
-  Если brightnessLevelSeved и colorLevelSeved пусто то на полную яркость(100%) и холодный цвет(0%).
-  С параметрами:
-    - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100,'colorLevel'=> 0<-->100));
-    - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100));
-    - callMethod('имя объекта.turnOn', array('colorLevel'=> 0<-->100));
-
-Устанавливается flag=1. Стопер который не дает запускаться методу AutoOFF.
-
-
-                                 РЕЖИМ ПОДСВЕТКИ:      
+### **РЕЖИМ ПОДСВЕТКИ:**
 
 Включить ночной режим - callMethod('имя объекта '.'turnOn', array('dayNight'=>1));
 Включится на время которое указано в timerOFF(сек). Если 0 то включится но сам не выключится.
