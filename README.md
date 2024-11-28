@@ -6,12 +6,12 @@
 Автовыключение по заданному времени.С заданными яркостью и теплотой для дня и ночи.<br>
 Включение по времени суток(Ночь,День,Кгуглосуточно)
 
-**Надо привязать свойства:**
-- **brightnessWork - brightness лампочки.**
+<span style="color: red;">**Надо привязать свойства:**</span>
+<span style="color: red;">- **brightnessWork - brightness лампочки.**</span>
      - Добавить Путь (write): zigbee2mqtt/Название устройства/set/brightness
-- **colorWork - color_temp лампочки.**
+<span style="color: red;">- **colorWork - color_temp лампочки.**</span>
      - Добавить Путь (write): zigbee2mqtt/Название устройства/set/color_temp
-- **status - state лампочки.**
+<span style="color: red;">- **status - state лампочки.**</span>
      - В статус не добовляем путь(write) так как он нужен только для обратной связи
 что бы знать включена или нет лапочка для сцен или кнопок.
 Минимальные и максимальные рабочие уровни:
