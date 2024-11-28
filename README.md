@@ -37,6 +37,7 @@
 - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100, 'colorLevel'=> 0<-->100));<br>
 - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100));<br>
 - callMethod('имя объекта.turnOn', array('colorLevel'=> 0<-->100));<br>
+
 Устанавливается flag=1. Стопер который не дает запускаться методу AutoOFF.
 
 ### **РЕЖИМ ПОДСВЕТКИ:**
