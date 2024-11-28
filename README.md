@@ -28,7 +28,7 @@
 - colorWorkMax - 500
 - colorWorkMin - 153
 
-### ** ОБЫЧНЫЙ РЕЖИМ:**
+### **ОБЫЧНЫЙ РЕЖИМ:**
 
 Включить - callMethod('имя объекта '.'turnOn'); 
   Если без параметров установит то что в brightnessLevelSeved и colorLevelSeved.
