@@ -30,9 +30,9 @@
 
 ### **ОБЫЧНЫЙ РЕЖИМ:**
 
-Включить - callMethod('имя объекта '.'turnOn');<br>
-Если без параметров установит то что в brightnessLevelSeved и colorLevelSeved.<br>
-Если brightnessLevelSeved и colorLevelSeved пусто то на полную яркость(100%) и холодный цвет(0%).<br>
+Включить - callMethod('имя объекта.turnOn');<br>
+ Если без параметров установит то что в brightnessLevelSeved и colorLevelSeved.<br>
+ Если brightnessLevelSeved и colorLevelSeved пусто то на полную яркость(100%) и холодный цвет(0%).<br>
 С параметрами:
 - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100, 'colorLevel'=> 0<-->100));<br>
 - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100));<br>
@@ -41,7 +41,7 @@
 
 ### **РЕЖИМ ПОДСВЕТКИ:**
 
-Включить ночной режим - callMethod('имя объекта '.'turnOn', array('dayNight'=>1));<br>
+Включить ночной режим - callMethod('имя объекта.turnOn', array('dayNight'=>1));<br>
 Включится на время которое указано в timerOFF(сек). Если 0 то включится но сам не выключится.<br>
 Если в presence(например данные с датчика присутствия) 1 то не выключится.<br>
   Как только в presence изменися с 1 на 0 запустится метод автовыключения.
