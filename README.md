@@ -31,28 +31,7 @@
 
 
 
-Надо привязать к свойствам:
-    brightnessWork - brightness лампочки.
-      Добавить Путь (write): zigbee2mqtt/Название устройства/set/brightness
-    colorWork - color_temp лампочки.
-      Добавить Путь (write): zigbee2mqtt/Название устройства/set/color_temp
-    status - state лампочки.
-      В статус не добовляем путь(write) так как он нужен только для обратной связи
-      что бы знать включена или нет лапочка для сцен или кнопок.
-  Минимальные и максимальные рабочие уровни:
-    Например для лампочек Xiaomi ZigBee это:
-      - brightnessWorkMax - 254
-      - brightnessWorkMin - 0
-      - colorWorkMax - 370
-      - colorWorkMin - 153
-    а для лампочек Tuta ZigBee это:
-      - brightnessWorkMax - 254
-      - brightnessWorkMin - 0
-      - colorWorkMax - 500
-      - colorWorkMin - 153
-
-
-                                  ОБЫЧНЫЙ РЕЖИМ:
+ОБЫЧНЫЙ РЕЖИМ:
 
 Включить - callMethod('имя объекта '.'turnOn'); 
   Если без параметров установит то что в brightnessLevelSeved и colorLevelSeved.
