@@ -16,5 +16,5 @@ if ($colorWorkNew == $colorWorkOld || ($colorWorkNew < $colorWorkMin && $colorWo
 
 if ($colorWorkMin != $colorWorkMax) {
 	$colorLevel = round(($colorWorkNew - $colorWorkMin) / (round($colorWorkMax - $colorWorkMin)) * 100);
-	$this->setProperty('colorLevel', $colorLevel);
+	//$this->setProperty('colorLevel', $colorLevel);
 }
