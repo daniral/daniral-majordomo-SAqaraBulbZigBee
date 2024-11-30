@@ -34,17 +34,19 @@ $this->device_types['SAqaraBulb'] = array(
 		'dayColorLevel' => array('DESCRIPTION' => 'Уровень температуры днем (1<-->100)'),
 		'nightBrightnessLevel' => array('DESCRIPTION' => 'Уровень яркости ночью(1<-->100)'),
 		'nightColorLevel' => array('DESCRIPTION' => 'Уровень температуры днем (1<-->100)'),
+		'brightnessLevel' => array('DESCRIPTION' => 'Яркость (0<-->100)', 'ONCHANGE' => 'brightnessLevelChanged', 'DATA_KEY' => 1),
+		'colorLevel' => array('DESCRIPTION' => 'Уровень температуры: (0<-->100)', 'ONCHANGE' => 'colorLevelChanged', 'DATA_KEY' => 1),
+		
 		'brightnessWorkMax' => array('DESCRIPTION' => 'Максимальная рабочая яркость.', '_CONFIG_TYPE' => 'num'),
 		'brightnessWorkMin' => array('DESCRIPTION' => 'Минимальная рабочая яркость.', '_CONFIG_TYPE' => 'num'),
 		'colorWorkMax' => array('DESCRIPTION' => 'Максимальная рабочая теплота.', '_CONFIG_TYPE' => 'num'),
 		'colorWorkMin' => array('DESCRIPTION' => 'Минимальная рабочая теплота.', '_CONFIG_TYPE' => 'num'),
-
-		'brightnessLevel' => array('DESCRIPTION' => 'Яркость (0<-->100)', 'ONCHANGE' => 'brightnessLevelChanged', 'DATA_KEY' => 1),
 		'brightnessLevelSeved' => array('DESCRIPTION' => 'Сохраненная(предыдущая) яркость.', '_CONFIG_TYPE' => 'num'),
-		'brightnessWork' => array('DESCRIPTION' => 'Рабочая яркость.', 'ONCHANGE' => 'brightnessWorkChanged', '_CONFIG_TYPE' => 'num'),
-		'colorLevel' => array('DESCRIPTION' => 'Уровень температуры: (0<-->100)', 'ONCHANGE' => 'colorLevelChanged', 'DATA_KEY' => 1),
 		'colorLevelSeved' => array('DESCRIPTION' => 'Сохраненная(предыдущая) теплота.', '_CONFIG_TYPE' => 'num'),
+		'brightnessWork' => array('DESCRIPTION' => 'Рабочая яркость.', 'ONCHANGE' => 'brightnessWorkChanged', '_CONFIG_TYPE' => 'num'),
 		'colorWork' => array('DESCRIPTION' => 'Рабочая теплота.', 'ONCHANGE' => 'colorWorkChanged', '_CONFIG_TYPE' => 'num'),
+		
+		
 
 	),
 	'METHODS' => array(
