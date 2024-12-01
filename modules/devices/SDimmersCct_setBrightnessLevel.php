@@ -1,8 +1,10 @@
 <?php
+
 /*
-Установить яркость света.(array("value"=>brightnessWorkMin <--> brightnessWorkMax))
+Флаг 1 - автовыключение не запустится.
+Установить яркость света.(array("value"=> 0 <--> 100 %))
 Без  параметров то что в brightnessLevelSeved.
-Если brightnessLevelSeved пусто то brightnessWorkMax.
+Если brightnessLevelSeved пусто то 100%.
 */
 
 $b_seved = $this->getProperty('brightnessLevelSeved');

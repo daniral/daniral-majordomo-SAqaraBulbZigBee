@@ -1,9 +1,10 @@
 <?php
 
 /*
-Установить температуру.(array("value"=>colorWorkMin <--> colorWorkMax))
+Флаг 1 - автовыключение не запустится.
+Установить температуру.(array("value"=>0 <--> 100 %))
 Без  параметров то что в colorLevelSeved.
-Если colorLevelSeved пуст то холодный colorWorkMin.
+Если colorLevelSeved пуст то 0 (холодный).
 */
 
 $new_color;

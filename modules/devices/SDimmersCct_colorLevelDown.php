@@ -1,8 +1,10 @@
 <?php
+
 /*
-Уменьшить температуру.(array("value"=>1-50))
-Уменьшает минимум до colorWorkMin
-Без  параметров -10.
+
+Уменьшить температуру.(array("value"=>1-50)). Без  параметров -10.
+Уменьшает минимум до 1%
+
 */
 
 $inc;
@@ -19,8 +21,8 @@ if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
 
 $colorLevel += $inc;
 
-if ($colorLevel < 0) {
-  $colorLevel = 0;
+if ($colorLevel < 1) {
+  $colorLevel = 1;
 }
 
 if ($colorLevel == $this->getProperty('colorLevel')) {

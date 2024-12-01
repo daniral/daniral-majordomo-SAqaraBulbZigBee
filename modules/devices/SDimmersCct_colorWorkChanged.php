@@ -1,5 +1,12 @@
 <?php
 
+/*
+
+Запускается при изменении рабочнго уровня.
+Переводит в проценты и пишет в colorLevel.
+
+*/
+
 $colorWorkNew = $params['NEW_VALUE'];
 $colorWorkOld = $params['OLD_VALUE'];
 $colorWorkMin = $this->getProperty('colorWorkMin');
@@ -9,5 +16,5 @@ if ($colorWorkNew == $colorWorkOld || ($colorWorkNew < $colorWorkMin && $colorWo
 
 if ($colorWorkMin != $colorWorkMax) {
 	$colorLevel = round(($colorWorkNew - $colorWorkMin) / (round($colorWorkMax - $colorWorkMin)) * 100);
-	$this->setProperty('colorLevel', $colorLevel);
+	//$this->setProperty('colorLevel', $colorLevel);
 }

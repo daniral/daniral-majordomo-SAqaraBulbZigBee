@@ -1,8 +1,7 @@
 <?php
 /*
-Увеличить яркость.(array('value'=>1-50))
-Без  параметров +10.
-Увеличит максимум до brightnessWorkMax.
+Увеличить яркость.(array('value'=>1-50)). Без  параметров +10.
+Увеличит максимум до 100%.
 */
 
 $brightnessLevel = $this->getProperty('brightnessLevel');
