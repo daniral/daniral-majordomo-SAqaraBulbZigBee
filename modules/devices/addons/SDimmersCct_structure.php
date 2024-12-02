@@ -6,7 +6,7 @@ if (SETTINGS_SITE_LANGUAGE && file_exists(ROOT . 'languages/SDimmersCct_' . SETT
 	include_once(ROOT . 'languages/SDimmersCct_default.php'); //
 }
 
-$this->device_types['SDimmersCct'] = array(
+$this->device_types['dimmerCct'] = array(
 	'TITLE' => 'Освещение (Яркость,Температура)',
 	'PARENT_CLASS' => 'SControllers',
 	'CLASS' => 'SDimmersCct',
