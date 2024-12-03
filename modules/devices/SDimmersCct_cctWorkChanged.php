@@ -6,7 +6,7 @@
 Переводит в проценты и пишет в cctLevel.
 
 */
-
+/*
 $cctWorkNew = $params['NEW_VALUE'];
 $cctWorkOld = $params['OLD_VALUE'];
 $cctWorkMin = $this->getProperty('cctWorkMin');
@@ -18,3 +18,4 @@ if ($cctWorkMin != $cctWorkMax) {
 	$cctLevel = round(($cctWorkNew - $cctWorkMin) / (round($cctWorkMax - $cctWorkMin)) * 100);
 	//$this->setProperty('cctLevel', $cctLevel);
 }
+*/
