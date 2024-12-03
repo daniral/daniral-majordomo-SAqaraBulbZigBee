@@ -3,21 +3,21 @@
 /*
 Флаг 1 - автовыключение не запустится.
 Установить температуру.(array("value"=>0 <--> 100 %))
-Без  параметров то что в colorLevelSeved.
-Если colorLevelSeved пуст то 0 (холодный).
+Без  параметров то что в cctLevelSeved.
+Если cctLevelSeved пуст то 0 (холодный).
 */
 
-$new_color;
-$c_seved = $this->getProperty('colorLevelSeved');
+$new_cct;
+$c_seved = $this->getProperty('cctLevelSeved');
 
 $this->setProperty('flag', '1');
 
 if (isset($params['value']) && $params['value'] >= 0 && $params['value'] <= 100) {
-	$new_color = $params['value'];
+	$new_cct = $params['value'];
 } else if ($c_seved) {
-	$new_color = $c_seved;
+	$new_cct = $c_seved;
 } else {
-	$new_color = 0;
+	$new_cct = 0;
 }
 
-$this->setProperty('colorLevel', $new_color);
+$this->setProperty('cctLevel', $new_cct);

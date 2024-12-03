@@ -4,22 +4,22 @@
 Изменить температуру.(array('value'=>'C'-cold,'N'-neutral,'W'-warmest))
 */
 
-$colorSet;
+$cctSet;
 $pset;
 
 if (isset($params[value])) {
   $pset = $params[value];
   if ($pset == 'C' || $pset == 'c') {
-    $colorSet = 0;
+    $cctSet = 0;
   } else if ($pset == 'N' || $pset == 'n') {
-    $colorSet = 50;
+    $cctSet = 50;
   } else if ($pset == 'W' || $pset == 'w') {
-    $colorSet = 100;
+    $cctSet = 100;
   } else {
     return;
   }
-  if ($this->getProperty('colorLevel') == $colorSet) {
+  if ($this->getProperty('cctLevel') == $cctSet) {
     return;
   }
-  $this->callMethod('setColorLevel', array('value' => $colorSet));
+  $this->callMethod('setCctLevel', array('value' => $cctSet));
 }

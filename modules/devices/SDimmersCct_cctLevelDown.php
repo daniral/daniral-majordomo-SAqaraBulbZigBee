@@ -8,7 +8,7 @@
 */
 
 $inc;
-$colorLevel = $this->getProperty('colorLevel');
+$cctLevel = $this->getProperty('cctLevel');
 
 if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
   $inc = $params[value];
@@ -19,14 +19,14 @@ if (isset($params[value]) && $params[value] > 0 && $params[value] <= 50) {
   $inc = '-10';
 }
 
-$colorLevel += $inc;
+$cctLevel += $inc;
 
-if ($colorLevel < 1) {
-  $colorLevel = 1;
+if ($cctLevel < 1) {
+  $cctLevel = 1;
 }
 
-if ($colorLevel == $this->getProperty('colorLevel')) {
+if ($cctLevel == $this->getProperty('cctLevel')) {
   return;
 }
 
-$this->callMethod('setColorLevel', array('value' => $colorLevel));
+$this->callMethod('setCctLevel', array('value' => $cctLevel));

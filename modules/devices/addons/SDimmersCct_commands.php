@@ -29,9 +29,9 @@ if ($device_type == 'SDimmersCct') {
    $reply_confirm = 1;
   }
  }
- elseif (preg_match('/' . LANG_SDimmersCct_PATTERN_COLOR . '/uis', $command)) {
+ elseif (preg_match('/' . LANG_SDimmersCct_PATTERN_TEMPERATURE . '/uis', $command)) {
   if(preg_match('/(?:\s)(\d{1,2}|100)(?:%|\s|$)/uis', $command, $matches)) {
-   $run_code .= "setGlobal('$linked_object.colorLevel', $matches[1]);";
+   $run_code .= "setGlobal('$linked_object.cctLevel', $matches[1]);";
    $processed = 1;
    $reply_confirm = 1;
   }

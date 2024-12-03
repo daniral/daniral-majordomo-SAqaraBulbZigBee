@@ -358,7 +358,7 @@ $Record['MAX_VALUE']=100;
 $Record['CUR_VALUE']='0';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='dayColorLevel';
+$Record['LINKED_PROPERTY']='dayCctLevel';
 $R19=SQLInsert('commands', $Record);
 //Menu-26
 $Record = Array();
@@ -374,7 +374,7 @@ $Record['MAX_VALUE']=100;
 $Record['CUR_VALUE']='100';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='nightColorLevel';
+$Record['LINKED_PROPERTY']='nightCctLevel';
 $R21=SQLInsert('commands', $Record);
 //Menu-27
 $Record = Array();
@@ -390,7 +390,7 @@ $Record['MAX_VALUE']=1000;
 $Record['CUR_VALUE']='370';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='colorWorkMax';
+$Record['LINKED_PROPERTY']='cctWorkMax';
 $R19=SQLInsert('commands', $Record);
 //Menu-28
 $Record = Array();
@@ -406,5 +406,5 @@ $Record['MAX_VALUE']=1000;
 $Record['CUR_VALUE']='153';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='colorWorkMin';
+$Record['LINKED_PROPERTY']='cctWorkMin';
 $R21=SQLInsert('commands', $Record);

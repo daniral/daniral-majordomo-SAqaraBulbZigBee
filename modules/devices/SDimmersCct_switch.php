@@ -1,9 +1,9 @@
 <?php
 /*
 Переключить состояние Вкл/Выкл.
-если было включено в режиме подсветки то включить то что в brightnessLevelSeved и colorLevelSeved.
+если было включено в режиме подсветки то включить то что в brightnessLevelSeved и cctLevelSeved.
 Еще запуск выключит.
-Если было выключено включет то что в brightnessLevelSeved и colorLevelSeved.
+Если было выключено включет то что в brightnessLevelSeved и cctLevelSeved.
 */
 
 if (!$this->getProperty('brightnessLevel') && !$this->getProperty('flag')) {

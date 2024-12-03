@@ -3,7 +3,7 @@
 $dictionary = array(
 
  'SDimmersCct_PATTERN_BRIGHTNESS' => 'brightness',
- 'SDimmersCct_PATTERN_COLORTEMPERATURE' => 'temperature'
+ 'SDimmersCct_PATTERN_TEMPERATURE' => 'temperature'
 
 );
 

@@ -3,7 +3,7 @@
 Надо привязать к свойствам:
     brightnessWork - brightness лампочки.
       Добавить Путь (write): zigbee2mqtt/Название устройства/set/brightness
-    colorWork - color_temp лампочки.
+    cctWork - color_temp лампочки.
       Добавить Путь (write): zigbee2mqtt/Название устройства/set/color_temp
     status - state лампочки.
       В статус не добовляем путь(write) так как он нужен только для обратной связи
@@ -12,24 +12,24 @@
     Например для лампочек Xiaomi ZigBee это:
       - brightnessWorkMax - 254
       - brightnessWorkMin - 0
-      - colorWorkMax - 370
-      - colorWorkMin - 153
+      - cctWorkMax - 370
+      - cctWorkMin - 153
     а для лампочек Tuta ZigBee это:
       - brightnessWorkMax - 254
       - brightnessWorkMin - 0
-      - colorWorkMax - 500
-      - colorWorkMin - 153
+      - cctWorkMax - 500
+      - cctWorkMin - 153
 
 
                                   ОБЫЧНЫЙ РЕЖИМ:
 
 Включить - callMethod('имя объекта '.'turnOn'); 
-  Если без параметров установит то что в brightnessLevelSeved и colorLevelSeved.
-  Если brightnessLevelSeved и colorLevelSeved пусто то на полную яркость(100%) и холодный цвет(0%).
+  Если без параметров установит то что в brightnessLevelSeved и cctLevelSeved.
+  Если brightnessLevelSeved и cctLevelSeved пусто то на полную яркость(100%) и холодный цвет(0%).
   С параметрами:
-    - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100,'colorLevel'=> 0<-->100));
+    - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100,'cctLevel'=> 0<-->100));
     - callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100));
-    - callMethod('имя объекта.turnOn', array('colorLevel'=> 0<-->100));
+    - callMethod('имя объекта.turnOn', array('cctLevel'=> 0<-->100));
 
 Устанавливается flag=1. Стопер который не дает запускаться методу AutoOFF.
 
@@ -46,8 +46,8 @@
     1-Днем
     2-Ночью
 Если по солнцу:
-  после захода - ночные установки яркости (nightBrightnessLevel) и теплоты (nightColorLevel).
-  после восхода - дневные (dayBrightnessLevel, dayColorLevel).
+  после захода - ночные установки яркости (nightBrightnessLevel) и теплоты (nightCcttLevel).
+  после восхода - дневные (dayBrightnessLevel, dayCctLevel).
   Надо обязательно писать в свойства sunriseTime и sunsetTime время восхода и заката.
   Если не указано то то что указано в ручную.
   К восходу и закату можно прибавить или отнять время если надо чтобы включалось или выключалось раньше или позже:
@@ -65,7 +65,7 @@
   если illuminance меньше чем установленно в illuminanceMax подсветка вкится.
   Работу по датчику освещения не проверял так как не имеется в наличии.
 Можно запустить режим подсветки с параметпами:
-  - callMethod('имя объекта.turnOn', array('dayNight'=>1, 'brightnessLevel'=> 1<--> 100,'colorLevel'=> 0<-->100));
+  - callMethod('имя объекта.turnOn', array('dayNight'=>1, 'brightnessLevel'=> 1<--> 100,'cctLevel'=> 0<-->100));
 
 Устанавливается flag=0. Запускается метод AutoOFF.
 
@@ -74,18 +74,18 @@
                           Без  параметров то что в brightnessLevelSeved.
                           Если brightnessLevelSeved пусто то 100%.
                           flag 1 - автовыключение не запустится.
-  - setColorLevel - Установить температуру.(array("value"=>0 <--> 100 %))
-                    Без  параметров то что в colorLevelSeved.
-                    Если colorLevelSeved пуст то 0 (холодный).
+  - setCctLevel - Установить температуру.(array("value"=>0 <--> 100 %))
+                    Без  параметров то что в cctLevelSeved.
+                    Если cctLevelSeved пуст то 0 (холодный).
                     flag 1 - автовыключение не запустится.
   - brightnessLevelDown - Уменьшить яркость.(array("value"=>1-50)). Без  параметров -10.
   - brightnessLevelUp - Увеличить яркость.(array("value"=>1-50)). Без  параметров 10.
-  - colorLevelDown - Уменьшить температуру.(array("value"=>1-50)). Без  параметров -10.
-  - colorleveUp - Увеличить температуру.(array("value"=>1-50)). Без  параметров 10.
+  - cctLevelDown - Уменьшить температуру.(array("value"=>1-50)). Без  параметров -10.
+  - cctleveUp - Увеличить температуру.(array("value"=>1-50)). Без  параметров 10.
   - byDefault - Установит параметры по дефолту. Это если что-то пошло не так. 
       При первом запуске метода turnOn тоже все выставится по дефолту.
   - CommandsMenu - Создаст меню данного объекта в "Меню Управления"
-  - colorPreset - Установить температуру ('C'-Холодная,'N'-Нейтральная,'W'-Теплая).
+  - cctPreset - Установить температуру ('C'-Холодная,'N'-Нейтральная,'W'-Теплая).
       - array('value'=>'C');
 
 
@@ -100,13 +100,13 @@
 */
 
 if ($this->getProperty('dayBrightnessLevel') == '') $this->setProperty('dayBrightnessLevel', '100');
-if ($this->getProperty('dayColorLevel') == '') $this->setProperty('dayColorLevel', '0');
+if ($this->getProperty('dayCctLevel') == '') $this->setProperty('dayCctLevel', '0');
 if ($this->getProperty('nightBrightnessLevel') == '') $this->setProperty('nightBrightnessLevel', '10');
-if ($this->getProperty('nightColorLevel') == '') $this->setProperty('nightColorLevel', '100');
+if ($this->getProperty('nightCctLevel') == '') $this->setProperty('nightCctLevel', '100');
 if ($this->getProperty('brightnessWorkMin') == '') $this->setProperty('brightnessWorkMin', '0');
 if ($this->getProperty('brightnessWorkMax') == '') $this->setProperty('brightnessWorkMax', '254');
-if ($this->getProperty('colorWorkMin') == '') $this->setProperty('colorWorkMin', '153');
-if ($this->getProperty('colorWorkMax') == '') $this->setProperty('colorWorkMax', '370');
+if ($this->getProperty('cctWorkMin') == '') $this->setProperty('cctWorkMin', '153');
+if ($this->getProperty('cctWorkMax') == '') $this->setProperty('cctWorkMax', '370');
 if ($this->getProperty('timerOFF') == '') $this->setProperty('timerOFF', '120');
 if ($this->getProperty('presence') == '') $this->setProperty('presence', '0');
 if ($this->getProperty('dayBegin') == '') $this->setProperty('dayBegin', '08:00');
@@ -129,7 +129,7 @@ if ($this->getProperty('sunsetTime') == '') $this->setProperty('sunsetTime', $th
 
 
 
-$colorLevel = isset($params['colorLevel']) && $params['colorLevel'] >= 0 && $params['colorLevel'] <= 100 ? $params['colorLevel'] : 0;
+$cctLevel = isset($params['cctLevel']) && $params['cctLevel'] >= 0 && $params['cctLevel'] <= 100 ? $params['cctLevel'] : 0;
 $brightnessLevel = isset($params['brightnessLevel']) && $params['brightnessLevel'] > 0 && $params['brightnessLevel'] <= 100 ? $params['brightnessLevel'] : 0;
 $dayNight = isset($params['dayNight']) && $params['dayNight'] == 1 ? 1 : 0;
 
@@ -137,10 +137,10 @@ $day_b;
 $night_b;
 
 if (!$dayNight) {
-  if ($colorLevel) {
-    $this->callMethod('setColorLevel', $colorLevel);
+  if ($cctLevel) {
+    $this->callMethod('setCctLevel', $cctLevel);
   } else {
-    $this->callMethod('setColorLevel');
+    $this->callMethod('setCctLevel');
   }
   if ($brightnessLevel) {
     $this->callMethod('setBrightnessLevel', $brightnessLevel);
@@ -162,17 +162,17 @@ if ($dayNight && !$this->getProperty('flag')) {
   if ($this->getProperty('autoOnOff')) {
     if (($this->getProperty('workInDai') == '2' || $this->getProperty('workInDai') == '0') && !$this->getProperty('bySensor') && timeBetween($night_b, $day_b)) {
       $this->setProperty('brightnessLevel', $brightnessLevel ? $brightnessLevel : $this->getProperty('nightBrightnessLevel'));
-      $this->setProperty('colorLevel', $colorLevel ? $colorLevel : $this->getProperty('nightColorLevel'));
+      $this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('nightCctLevel'));
       $this->callMethod('AutoOFF');
     }
     if (($this->getProperty('workInDai') == '1' || $this->getProperty('workInDai') == '0') && !$this->getProperty('bySensor') && timeBetween($day_b, $night_b)) {
       $this->setProperty('brightnessLevel', $brightnessLevel ? $brightnessLevel : $this->getProperty('dayBrightnessLevel'));
-      $this->setProperty('colorLevel', $colorLevel ? $colorLevel : $this->getProperty('dayColorLevel'));
+      $this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('dayCctLevel'));
       $this->callMethod('AutoOFF');
     }
     if (($this->getProperty('bySensor') && $this->getProperty('illuminance') <= $this->getProperty('illuminanceMax')) || $this->getProperty('illuminanceFlag')) {
       $this->setProperty('brightnessLevel', $this->getProperty('nightBrightnessLevel'));
-      $this->setProperty('colorLevel', $this->getProperty('nightColorLevel'));
+      $this->setProperty('cctLevel', $this->getProperty('nightCctLevel'));
       $this->setProperty('illuminanceFlag', 1);
       $this->callMethod('AutoOFF');
     }
