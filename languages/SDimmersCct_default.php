@@ -2,8 +2,8 @@
 
 $dictionary = array(
 
- 'SAqaraBulbZigBee_PATTERN_BRIGHTNESS' => 'brighness',
- 'SAqaraBulbZigBee_PATTERN_COLORTEMPERATURE' => 'color temperature'
+ 'SDimmersCct_PATTERN_BRIGHTNESS' => 'brightness',
+ 'SDimmersCct_PATTERN_TEMPERATURE' => 'temperature'
 
 );
 
