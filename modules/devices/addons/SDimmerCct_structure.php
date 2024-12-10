@@ -73,5 +73,6 @@ $this->device_types['dimmer'] = array(
 		'cctUpdated' => array('DESCRIPTION' => 'Запускается при смене цвета температуры'),
 		'levelWorkUpdated' => array('DESCRIPTION' => 'Запускается при смене рабочей яркости'),
 		'cctWorkUpdated' => array('DESCRIPTION' => 'Запускается при смене цвета рабочей температуры'),
+		'statusUpdated' => array('DESCRIPTION' => 'Status Updated'),
 	),
 );
