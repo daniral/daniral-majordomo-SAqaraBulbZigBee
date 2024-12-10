@@ -6,8 +6,8 @@ if (SETTINGS_SITE_LANGUAGE && file_exists(ROOT . 'languages/SDimmerCct_' . SETTI
 	include_once(ROOT . 'languages/SDimmerCct_default.php'); //
 }
 
-$this->device_types['dimmerCct'] = array(
-	'TITLE' => 'ОсвещениеD (Яркость,Температура)',
+$this->device_types['dimmer'] = array(
+	'TITLE' => 'ОсвещениеД (Яркость,Температура)',
 	'PARENT_CLASS' => 'SDimmers',
 	'CLASS' => 'SDimmerCct',
 	'PROPERTIES' => array(

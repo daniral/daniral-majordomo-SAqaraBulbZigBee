@@ -18,6 +18,7 @@ if (isset($params['value']) && $params['value'] >= 0 && $params['value'] <= 100)
 	$newCct = $cctSeved;
 } else {
 	$newCct = 0;
+	
 }
 
 $this->setProperty('cctLevel', $newCct);
