@@ -30,7 +30,8 @@ $this->device_types['dimmer'] = array(
 		'illuminanceFlag' => array('DESCRIPTION' => 'Стопер датчика освещения'),
 		'illuminance' => array('DESCRIPTION' => 'Данные с датчика освещения.', 'DATA_KEY' => 1),
 		'illuminanceMax' => array('DESCRIPTION' => 'Максимальное освещение.Если меньше включается свет.'),
-
+		'status' => array('DESCRIPTION' => 'Статус', 'ONCHANGE' => 'statusUpdated'),
+		
 		'dayLevel' => array('DESCRIPTION' => 'Уровень яркости днем (1<-->100)'),
 		'dayCctLevel' => array('DESCRIPTION' => 'Уровень температуры днем (1<-->100)'),
 		'nightLevel' => array('DESCRIPTION' => 'Уровень яркости ночью(1<-->100)'),
