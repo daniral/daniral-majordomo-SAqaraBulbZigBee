@@ -7,7 +7,7 @@
 
 **Надо привязать свойства:**
 
-- **brightnessWork - brightness лампочки.**
+- **levelWork - brightness лампочки.**
   - Добавить Путь (write): zigbee2mqtt/Название устройства/set/brightness
 - **cctWork - color_temp лампочки.**
   - Добавить Путь (write): zigbee2mqtt/Название устройства/set/color_temp
@@ -18,27 +18,27 @@
 
 **Например для лампочек Xiaomi ZigBee это:**
 
-- brightnessWorkMax - 254
-- brightnessWorkMin - 0
-- cctWorkMax - 370
-- cctWorkMin - 153
+- maxWork - 254
+- minWork - 0
+- cctMaxWork - 370
+- cctMinWork - 153
 
 **Для для лампочек Tuta ZigBee это:**
 
-- brightnessWorkMax - 254
-- brightnessWorkMin - 0
-- cctWorkMax - 500
-- cctWorkMin - 153
+- maxWork - 254
+- minWork - 0
+- cctMaxWork - 500
+- cctMinWork - 153
 
 ### **ОБЫЧНЫЙ РЕЖИМ:**
 
 Включить - callMethod('имя объекта '.'turnOn');  
-Если без параметров установит то что в brightnessLevelSeved и cctLevelSeved.  
-Если brightnessLevelSeved и cctLevelSeved пусто то на полную яркость(100%) и холодный цвет(0%).  
+Если без параметров установит то что в levelSaved и cctSeved.  
+Если levelSaved и cctSeved пусто то на полную яркость(100%) и холодный цвет(0%).  
 
 С параметрами:
-- callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100, 'cctLevel'=> 0<-->100));  
-- callMethod('имя объекта.turnOn', array('brightnessLevel'=> 1<-->100));  
+- callMethod('имя объекта.turnOn', array('level'=> 1<-->100, 'cctLevel'=> 0<-->100));  
+- callMethod('имя объекта.turnOn', array('level'=> 1<-->100));  
 - callMethod('имя объекта.turnOn', array('cctLevel'=> 0<-->100));  
 
 **Устанавливается flag=1. Стопер который не дает запускаться методу AutoOFF.**
@@ -55,8 +55,8 @@
     + 1-Днем  
     + 2-Ночью  
 - Включать по солнцу(bySunTime):  
-  - после захода - ночные установки яркости (nightBrightnessLevel) и теплоты (nightCctLevel).  
-  - после восхода - дневные (dayBrightnessLevel, dayCctLevel).  
+  - после захода - ночные установки яркости (nightLevel) и теплоты (nightCctLevel).  
+  - после восхода - дневные (dayLevel, dayCctLevel).  
   - Надо обязательно писать в свойства sunriseTime и sunsetTime время восхода и заката.  
     Если не указано, то то, что указано - в ручную(byManually).  
   - К восходу и закату можно прибавить или отнять время если надо чтобы включалось или выключалось раньше или позже:
@@ -74,26 +74,26 @@
       - если illuminance меньше чем установленно в illuminanceMax подсветка включится.  
     - ***Работу по датчику освещения не проверял так как не имеется в наличии.***  
 - **Можно запустить режим подсветки с параметпами:**
-  - callMethod('имя объекта.turnOn', array('dayNight'=>1, 'brightnessLevel'=> 1<--> 100,'cctLevel'=> 0<-->100));
+  - callMethod('имя объекта.turnOn', array('dayNight'=>1, 'level'=> 1<--> 100,'cctLevel'=> 0<-->100));
 
 
 **Устанавливается flag=0. Запускается метод AutoOFF.**
 
 ## **Методы:**
 
-- **setBrightnessLevel** -  Установить яркость света.(array("value"=> 0 <--> 100 %))  
-  - Без  параметров то что в brightnessLevelSeved.  
-    - Если brightnessLevelSeved пусто то 100%.  
+- **setLevel** -  Установить яркость света.(array("value"=> 0 <--> 100 %))  
+  - Без  параметров то что в levelSaved.  
+    - Если levelSaved пусто то 100%.  
    - **flag=1** - автовыключение не запустится. 
-- **setCctLevel** - Установить температуру.(array("value"=>0 <--> 100 %))  
-   - Без  параметров то что в cctLevelSeved.  
-     - Если cctLevelSeved пуст то 0 (холодный).  
+- **setCct** - Установить температуру.(array("value"=>0 <--> 100 %))  
+   - Без  параметров то что в cctSeved.  
+     - Если cctSeved пуст то 0 (холодный).  
    - **flag=1** - автовыключение не запустится.  
-- **brightnessLevelDown**  
+- **levelDown**  
   - Уменьшить яркость.(array("value"=>1-50)). Без  параметров -10.
-- **brightnessLevelUp**  
+- **levelUp**  
   - Увеличить яркость.(array("value"=>1-50)). Без  параметров 10.
-- **cctLevelDown**  
+- **cctDown**  
   - Уменьшить температуру.(array("value"=>1-50)). Без  параметров -10.
 - **cctleveUp**  
   - Увеличить температуру.(array("value"=>1-50)). Без  параметров 10.

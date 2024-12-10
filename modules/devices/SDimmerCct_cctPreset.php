@@ -21,5 +21,5 @@ if (isset($params[value])) {
   if ($this->getProperty('cctLevel') == $cctSet) {
     return;
   }
-  $this->callMethod('setCctLevel', array('value' => $cctSet));
+  $this->callMethod('setCct', array('value' => $cctSet));
 }

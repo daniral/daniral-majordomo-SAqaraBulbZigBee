@@ -1,15 +1,15 @@
 <?php
 
-if (SETTINGS_SITE_LANGUAGE && file_exists(ROOT . 'languages/SDimmersCct_' . SETTINGS_SITE_LANGUAGE . '.php')) {
-	include_once(ROOT . 'languages/SDimmersCct_' . SETTINGS_SITE_LANGUAGE . '.php');
+if (SETTINGS_SITE_LANGUAGE && file_exists(ROOT . 'languages/SDimmerCct_' . SETTINGS_SITE_LANGUAGE . '.php')) {
+	include_once(ROOT . 'languages/SDimmerCct_' . SETTINGS_SITE_LANGUAGE . '.php');
 } else {
-	include_once(ROOT . 'languages/SDimmersCct_default.php'); //
+	include_once(ROOT . 'languages/SDimmerCct_default.php'); //
 }
 
 $this->device_types['dimmerCct'] = array(
-	'TITLE' => 'Освещение (Яркость,Температура)',
-	'PARENT_CLASS' => 'SControllers',
-	'CLASS' => 'SDimmersCct',
+	'TITLE' => 'ОсвещениеD (Яркость,Температура)',
+	'PARENT_CLASS' => 'SDimmers',
+	'CLASS' => 'SDimmerCct',
 	'PROPERTIES' => array(
 		'addTimeSunrise' => array('DESCRIPTION' => 'Добавить к восходу(00:00)'),
 		'addTimeSunset' => array('DESCRIPTION' => 'Добавить к закату(00:00)'),
@@ -30,46 +30,48 @@ $this->device_types['dimmerCct'] = array(
 		'illuminanceFlag' => array('DESCRIPTION' => 'Стопер датчика освещения'),
 		'illuminance' => array('DESCRIPTION' => 'Данные с датчика освещения.', 'DATA_KEY' => 1),
 		'illuminanceMax' => array('DESCRIPTION' => 'Максимальное освещение.Если меньше включается свет.'),
-		'dayBrightnessLevel' => array('DESCRIPTION' => 'Уровень яркости днем (1<-->100)'),
+
+		'dayLevel' => array('DESCRIPTION' => 'Уровень яркости днем (1<-->100)'),
 		'dayCctLevel' => array('DESCRIPTION' => 'Уровень температуры днем (1<-->100)'),
-		'nightBrightnessLevel' => array('DESCRIPTION' => 'Уровень яркости ночью(1<-->100)'),
+		'nightLevel' => array('DESCRIPTION' => 'Уровень яркости ночью(1<-->100)'),
 		'nightCctLevel' => array('DESCRIPTION' => 'Уровень температуры днем (1<-->100)'),
-		'brightnessLevel' => array('DESCRIPTION' => 'Яркость (0<-->100)', 'ONCHANGE' => 'brightnessLevelChanged', 'DATA_KEY' => 1),
-		'cctLevel' => array('DESCRIPTION' => 'Уровень температуры: (0<-->100)', 'ONCHANGE' => 'cctLevelChanged', 'DATA_KEY' => 1),
+
+		'level' => array('DESCRIPTION' => 'Яркость (0<-->100)', 'ONCHANGE' => 'levelUpdated', 'DATA_KEY' => 1),
+		'cctLevel' => array('DESCRIPTION' => 'Уровень температуры: (0<-->100)', 'ONCHANGE' => 'cctUpdated', 'DATA_KEY' => 1),
 		
-		'brightnessWorkMax' => array('DESCRIPTION' => 'Максимальная рабочая яркость.', '_CONFIG_TYPE' => 'num'),
-		'brightnessWorkMin' => array('DESCRIPTION' => 'Минимальная рабочая яркость.', '_CONFIG_TYPE' => 'num'),
-		'cctWorkMax' => array('DESCRIPTION' => 'Максимальная рабочая теплота.', '_CONFIG_TYPE' => 'num'),
-		'cctWorkMin' => array('DESCRIPTION' => 'Минимальная рабочая теплота.', '_CONFIG_TYPE' => 'num'),
-		'brightnessLevelSeved' => array('DESCRIPTION' => 'Сохраненная(предыдущая) яркость.', '_CONFIG_TYPE' => 'num'),
-		'cctLevelSeved' => array('DESCRIPTION' => 'Сохраненная(предыдущая) теплота.', '_CONFIG_TYPE' => 'num'),
-		'brightnessWork' => array('DESCRIPTION' => 'Рабочая яркость.', 'ONCHANGE' => 'brightnessWorkChanged', '_CONFIG_TYPE' => 'num'),
-		'cctWork' => array('DESCRIPTION' => 'Рабочая теплота.', 'ONCHANGE' => 'cctWorkChanged', '_CONFIG_TYPE' => 'num'),
+		'maxWork' => array('DESCRIPTION' => 'Максимальная рабочая яркость.', '_CONFIG_TYPE' => 'num'),
+		'minWork' => array('DESCRIPTION' => 'Минимальная рабочая яркость.', '_CONFIG_TYPE' => 'num'),
+		'cctMaxWork' => array('DESCRIPTION' => 'Максимальная рабочая теплота.', '_CONFIG_TYPE' => 'num'),
+		'cctMinWork' => array('DESCRIPTION' => 'Минимальная рабочая теплота.', '_CONFIG_TYPE' => 'num'),
+		'levelSaved' => array('DESCRIPTION' => 'Сохраненная(предыдущая) яркость.', '_CONFIG_TYPE' => 'num'),
+		'cctSeved' => array('DESCRIPTION' => 'Сохраненная(предыдущая) теплота.', '_CONFIG_TYPE' => 'num'),
+		'levelWork' => array('DESCRIPTION' => 'Рабочая яркость.', 'ONCHANGE' => 'levelWorkUpdated', '_CONFIG_TYPE' => 'num'),
+		'cctWork' => array('DESCRIPTION' => 'Рабочая теплота.', 'ONCHANGE' => 'cctWorkUpdated', '_CONFIG_TYPE' => 'num'),
 		
 		
 
 	),
 	'METHODS' => array(
 		'AutoOFF' => array('DESCRIPTION' => 'Автовыключение (timerOFF) 0 не включает.'),
-		'brightnessLevelDown' => array('DESCRIPTION' => 'Уменьшить уровень яркости.(array(\'value\'=>1-50)) Без параметров -10.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
-		'brightnessLevelUp' => array('DESCRIPTION' => 'Увеличить уровень яркости.(array(\'value\'=>1-50)) Без параметров +10.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
-		'cctLevelDown' => array('DESCRIPTION' => 'Уменьшить уровень температуры.(array(\'value\'=>1-50)) Без параметров -10.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
-		'cctLevelUp' => array('DESCRIPTION' => 'Увеличить уровень температуры.(array(\'value\'=>1-50)) Без параметров +10.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
+		'levelDown' => array('DESCRIPTION' => 'Уменьшить уровень яркости.(array(\'value\'=>1-50)) Без параметров -10.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
+		'levelUp' => array('DESCRIPTION' => 'Увеличить уровень яркости.(array(\'value\'=>1-50)) Без параметров +10.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
+		'cctDown' => array('DESCRIPTION' => 'Уменьшить уровень температуры.(array(\'value\'=>1-50)) Без параметров -10.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
+		'cctUp' => array('DESCRIPTION' => 'Увеличить уровень температуры.(array(\'value\'=>1-50)) Без параметров +10.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
 		'byDefault' => array('DESCRIPTION' => 'Установить свойства по умолчанию.'),
 		'cctPreset' => array('DESCRIPTION' => 'Цветовые пресеты.(array(\'value\'=>\'C\'-cold,\'N\'-neutral,\'W\'-warmest))', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
 		'CommandsMenu' => array('DESCRIPTION' => 'Создает меню управления.(Запускать 1 раз для каждого объекта).', '_CONFIG_SHOW' => 1),
 		'presenceUpdated' => array('DESCRIPTION' => 'Запускается при изменении свойства presence'),
-		'setBrightnessLevel' => array('DESCRIPTION' => 'Установить уровень яркости.(array(\'value\'=> 0<-->100)) Без  параметров то что в brightnessLevelSeved. Если brightnessLevelSeved пусто то 100.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
-		'setCctLevel' => array('DESCRIPTION' => 'Установить уровень температуры.(array(\'value\'=> 0<-->100)) Без  параметров то что в cctLevelSeved. Если cctLevelSeved пуст то 0.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
+		'setLevel' => array('DESCRIPTION' => 'Установить уровень яркости.(array(\'value\'=> 0<-->100)) Без  параметров то что в levelSaved. Если levelSaved пусто то 100.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
+		'setCct' => array('DESCRIPTION' => 'Установить уровень температуры.(array(\'value\'=> 0<-->100)) Без  параметров то что в cctSeved. Если cctSeved пуст то 0.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
 		'switch' => array('DESCRIPTION' => 'Переключить', '_CONFIG_SHOW' => 1),
 		'switchByManually' => array('DESCRIPTION' => 'При включении вручную отключить по солнцу и по датчику.'),
 		'switchBySensor' => array('DESCRIPTION' => 'При включении сенсора света отключить по солнцу и вручную.'),
 		'switchBySunTime' => array('DESCRIPTION' => 'При включении по солнцу отключить по датчику света и вручную.'),
 		'turnOn' => array('DESCRIPTION' => 'ВключитЬ', '_CONFIG_SHOW' => 1),
 		'turnOff' => array('DESCRIPTION' => 'Выключить', '_CONFIG_SHOW' => 1),
-		'brightnessLevelChanged' => array('DESCRIPTION' => 'Запускается при смене яркости'),
-		'cctLevelChanged' => array('DESCRIPTION' => 'Запускается при смене цвета температуры'),
-		'brightnessWorkChanged' => array('DESCRIPTION' => 'Запускается при смене рабочей яркости'),
-		'cctWorkChanged' => array('DESCRIPTION' => 'Запускается при смене цвета рабочей температуры'),
+		'levelUpdated' => array('DESCRIPTION' => 'Запускается при смене яркости'),
+		'cctUpdated' => array('DESCRIPTION' => 'Запускается при смене цвета температуры'),
+		'levelWorkUpdated' => array('DESCRIPTION' => 'Запускается при смене рабочей яркости'),
+		'cctWorkUpdated' => array('DESCRIPTION' => 'Запускается при смене цвета рабочей температуры'),
 	),
 );
