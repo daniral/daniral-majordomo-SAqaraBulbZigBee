@@ -10,7 +10,9 @@
 $levelSaved = $this->getProperty('levelSaved');
 $newLevel;
 
-$this->setProperty('flag', '1');
+if (!str_contains($params['SOURCE'], 'dayNight')) {
+	$this->setProperty('flag', '1');
+}
 
 if (isset($params['value']) && $params['value'] >= 0 && $params['value'] <= 100) {
 	$newLevel = $params['value'];
@@ -24,4 +26,8 @@ if (isset($params['value']) && $params['value'] >= 0 && $params['value'] <= 100)
 	$newLevel = 100;
 }
 
-$this->setProperty('level', $newLevel);
+if (!str_contains($params['SOURCE'], 'levelWorkUpdated')) {
+	$this->setProperty('level', $newLevel);
+} else {
+	$this->setProperty('level', $newLevel, 'levelWorkUpdated');
+}

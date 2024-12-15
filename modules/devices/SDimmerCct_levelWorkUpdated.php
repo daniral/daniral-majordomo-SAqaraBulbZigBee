@@ -7,16 +7,15 @@
 
 */
 
-/*
 $brightnessWorkNew = $params['NEW_VALUE'];
 $brightnessWorkOld = $params['OLD_VALUE'];
 $minWork = $this->getProperty('minWork');
 $maxWork = $this->getProperty('maxWork');
 
-if ($brightnessWorkNew == $brightnessWorkOld || $brightnessWorkNew < $minWork || $brightnessWorkNew > $maxWork) return;
+//if ($brightnessWorkNew == $brightnessWorkOld || $brightnessWorkNew < $minWork || $brightnessWorkNew > $maxWork) return;
+if ($$brightnessWorkNew < $minWork || $brightnessWorkNew > $maxWork) return;
 
 if ($minWork != $maxWork) {
     $level = round(($brightnessWorkNew - $minWork) / (round($maxWork - $minWork)) * 100);
-    $this->setProperty('level', $level,'','levelWorkUpdated');
+    $this->callMethod('setLevel', array('value' => $level), 'levelWorkUpdated');
 }
-*/

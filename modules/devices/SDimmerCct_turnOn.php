@@ -127,25 +127,23 @@ if ($this->getProperty('signSunset') == '') $this->setProperty('signSunset', '1'
 if ($this->getProperty('sunriseTime') == '') $this->setProperty('sunriseTime', $this->getProperty('dayBegin'));
 if ($this->getProperty('sunsetTime') == '') $this->setProperty('sunsetTime', $this->getProperty('nightBegin'));
 
+$dayBegin;
+$nightBegin;
 
-
-$cctLevel = isset($params['cctLevel']) && $params['cctLevel'] >= 0 && $params['cctLevel'] <= 100 ? $params['cctLevel'] : 0;
 $level = isset($params['level']) && $params['level'] > 0 && $params['level'] <= 100 ? $params['level'] : 0;
+$cctLevel = isset($params['cctLevel']) && $params['cctLevel'] >= 0 && $params['cctLevel'] <= 100 ? $params['cctLevel'] : 0;
 $dayNight = isset($params['dayNight']) && $params['dayNight'] == 1 ? 1 : 0;
 
-$day_b;
-$night_b;
-
 if (!$dayNight) {
-  if ($cctLevel) {
-    $this->callMethod('setCct', $cctLevel);
-  } else {
-    $this->callMethod('setCct');
-  }
   if ($level) {
     $this->callMethod('setLevel', $level);
   } else {
     $this->callMethod('setLevel');
+  }
+  if ($cctLevel) {
+    $this->callMethod('setCct', $cctLevel);
+  } else {
+    $this->callMethod('setCct');
   }
   return;
 }
@@ -153,39 +151,40 @@ if (!$dayNight) {
 if ($dayNight && !$this->getProperty('flag')) {
 
   if ($this->getProperty('bySunTime') && $this->getProperty('sunriseTime') != '' && $this->getProperty('sunsetTime') != '') {
-    $day_b = edit_time($this->getProperty('sunriseTime'), $this->getProperty('addTimeSunrise'), $this->getProperty('signSunrise'));
-    $night_b = edit_time($this->getProperty('sunsetTime'), $this->getProperty('addTimeSunset'), $this->getProperty('signSunset'));
+    $dayBegin = edit_time($this->getProperty('sunriseTime'), $this->getProperty('addTimeSunrise'), $this->getProperty('signSunrise'));
+    $nightBegin = edit_time($this->getProperty('sunsetTime'), $this->getProperty('addTimeSunset'), $this->getProperty('signSunset'));
   } else if (!$this->getProperty('bySensor')) {
-    $day_b = $this->getProperty('dayBegin');
-    $night_b = $this->getProperty('nightBegin');
+    $dayBegin = $this->getProperty('dayBegin');
+    $nightBegin = $this->getProperty('nightBegin');
   }
   if ($this->getProperty('autoOnOff')) {
-    if (($this->getProperty('workInDai') == '2' || $this->getProperty('workInDai') == '0') && !$this->getProperty('bySensor') && timeBetween($night_b, $day_b)) {
-      $this->setProperty('level', $level ? $level : $this->getProperty('nightLevel'));
-      $this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('nightCctLevel'));
-      $this->callMethod('AutoOFF');
-    } else if (($this->getProperty('workInDai') == '1' || $this->getProperty('workInDai') == '0') && !$this->getProperty('bySensor') && timeBetween($day_b, $night_b)) {
-      $this->setProperty('level', $level ? $level : $this->getProperty('dayLevel'));
-      $this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('dayCctLevel'));
-      $this->callMethod('AutoOFF');
+    if (($this->getProperty('workInDai') == '2' || $this->getProperty('workInDai') == '0') && !$this->getProperty('bySensor') && timeBetween($nightBegin, $dayBegin)) {
+      $this->callMethod('setLevel', array('value' => $level ? $level : $this->getProperty('nightLevel')),'dayNight');
+      $this->callMethod('setCct', array('value' => $cctLevel ? $cctLevel : $this->getProperty('nightCctLevel')),'dayNight');
+
+      //$this->setProperty('level', $level ? $level : $this->getProperty('nightLevel'));
+      //$this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('nightCctLevel'));
+      //$this->callMethod('AutoOFF');
+
+    } else if (($this->getProperty('workInDai') == '1' || $this->getProperty('workInDai') == '0') && !$this->getProperty('bySensor') && timeBetween($dayBegin, $nightBegin)) {
+      $this->callMethod('setLevel', array('value' => $level ? $level : $this->getProperty('dayLevel')),'dayNight');
+      $this->callMethod('setCct', array('value' => $cctLevel ? $cctLevel : $this->getProperty('dayCctLevel')),'dayNight');
+      
+      //$this->setProperty('level', $level ? $level : $this->getProperty('dayLevel'));
+      //$this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('dayCctLevel'));
+      //$this->callMethod('AutoOFF');
+
     } else if (($this->getProperty('bySensor') && $this->getProperty('illuminance') <= $this->getProperty('illuminanceMax')) || $this->getProperty('illuminanceFlag')) {
-      $this->setProperty('level', $this->getProperty('nightLevel'));
-      $this->setProperty('cctLevel', $this->getProperty('nightCctLevel'));
+      $this->callMethod('setLevel', array('value' => $level ? $level : $this->getProperty('nightLevel')),'dayNight');
+      $this->callMethod('setCct', array('value' => $cctLevel ? $cctLevel : $this->getProperty('nightCctLevel')),'dayNight');
       $this->setProperty('illuminanceFlag', 1);
-      $this->callMethod('AutoOFF');
-    } else if ($this->getProperty('status') && !$this->getProperty('flag')) {
+
+      //$this->setProperty('level', $this->getProperty('nightLevel'));
+      //$this->setProperty('cctLevel', $this->getProperty('nightCctLevel'));
+      //$this->callMethod('AutoOFF');
+    }
+    if ($this->getProperty('status') && !$this->getProperty('flag')) {
       $this->callMethod('AutoOFF');
     }
   }
-}
-
-function edit_time($time, $addTime, $sign)
-{
-  $part = explode(':', $addTime);
-  $addTime_sec = $part[0] * 3600 + $part[1] * 60 + $part[2];
-  if (!$sign) {
-    $addTime_sec = $addTime_sec * -1;
-  }
-  $res = strtotime($time) + $addTime_sec;
-  return date('H:i', $res);
 }
