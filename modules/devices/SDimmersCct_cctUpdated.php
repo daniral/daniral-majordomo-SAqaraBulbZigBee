@@ -1,28 +1,22 @@
 <?php
-
 /*
-
-Переводит рабочие еденицы теплоты (cctMinWork <--> cctMaxWork) в проценты (0 <--> 100)
+Переводит из процентов (0 <--> 100) в рабочие еденицы теплоты в пределах (cctMinWork <--> cctMaxWork)
 Сохраняет предыдущее значение уровня в cctSeved
-
 */
 
 $cctNew = $params['NEW_VALUE'];
-$cctLevel = $this->getProperty('cctLevel');
 $cctMinWork = $this->getProperty('cctMinWork');
 $cctMaxWork = $this->getProperty('cctMaxWork');
 $levelSaved = $this->getProperty('levelSaved');
 
-if ($cctNew < 0 || $cctNew > 100 || $cctNew == $cctLevel) return;
+if ($cctNew < 0 || $cctNew > 100) return;
 
 if ($cctMinWork != $cctMaxWork) {
 	$cctLevelWork = round($cctMinWork + round(($cctMaxWork - $cctMinWork) * $cctNew / 100));
-	if (!str_contains($params['SOURCE'], 'cctWorkUpdated')) {
-		$this->setProperty('cctWork', $cctLevelWork);
-    }
-
+	$this->setProperty('cctWork', $cctLevelWork);
+	
 	if ($this->getProperty('flag')) {
-		$this->setProperty('cctSeved', $cctNew);
+		$this->setProperty('cctSeved', $cctNew); 
 	}
 	if (!$this->getProperty('level')) {
 		$this->setProperty('level', $levelSaved ? $levelSaved : 100);

@@ -2,8 +2,8 @@
 
 $dictionary = array(
 
- 'SDimmerCct_PATTERN_BRIGHTNESS' => 'brightness',
- 'SDimmerCct_PATTERN_TEMPERATURE' => 'temperature'
+ 'SDimmersCct_PATTERN_BRIGHTNESS' => 'brightness',
+ 'SDimmersCct_PATTERN_TEMPERATURE' => 'temperature'
 
 );
 

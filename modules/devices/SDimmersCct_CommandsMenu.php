@@ -1,9 +1,7 @@
 <?php
-
 /*
 Создает меню управления.(Запускать 1 раз для каждого объекта).
 */
-
 
 $sqlQuery="SELECT MAX(id) FROM commands";
 $data = SQLSelect($sqlQuery);
