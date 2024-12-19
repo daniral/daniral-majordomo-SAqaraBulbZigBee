@@ -61,7 +61,7 @@ $this->device_types['dimmer'] = array(
 		'setLevel' => array('DESCRIPTION' => 'Установить уровень яркости.(array(\'value\'=> 0<-->100)) Без  параметров то что в levelSaved. Если levelSaved пусто то 100.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
 		'setCct' => array('DESCRIPTION' => 'Установить уровень температуры.(array(\'value\'=> 0<-->100)) Без  параметров то что в cctSeved. Если cctSeved пуст то 0.', '_CONFIG_SHOW' => 1, '_CONFIG_REQ_VALUE' => 1),
 		'switchTime' => array('DESCRIPTION' => 'Переключение между по солнцу/вручную/по сенсору.'),
-		'turnOn' => array('DESCRIPTION' => 'ВключитЬ', '_CONFIG_SHOW' => 1),
+		'turnOn' => array('DESCRIPTION' => 'Включить', '_CONFIG_SHOW' => 1),
 		'turnOff' => array('DESCRIPTION' => 'Выключить', '_CONFIG_SHOW' => 1),
 		'switch' => array('DESCRIPTION' => 'Переключить', '_CONFIG_SHOW' => 1),
 		'levelUpdated' => array('DESCRIPTION' => 'Запускается при смене яркости'),
