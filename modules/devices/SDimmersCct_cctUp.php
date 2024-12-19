@@ -6,8 +6,8 @@
 $inc;
 $cctLevel = $this->getProperty('cctLevel');
 
-if (isset($params[value]) && $params[value] > 0 && $params[value] <= 100) {
-  $inc = $params[value];
+if (isset($params['value']) && $params['value'] > 0 && $params['value'] <= 100) {
+  $inc = $params['value'];
 } else {
   $inc = '10';
 }

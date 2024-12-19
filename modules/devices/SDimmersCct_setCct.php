@@ -7,11 +7,16 @@
 Если cctSeved пуст то 0 (холодный).
 Вместо процентов можно вызвать пресеты:'cool','neutral','warm'.
 */
+
 $cctSeved = $this->getProperty('cctSeved');
 $newCct;
 
-if (isset($params[$value])) {
+if (isset($params['value'])) {
     $newCct = strtolower($params['value']);
+} elseif ($cctSeved) {
+    $newCct = $cctSeved;
+} else {
+	$newCct = 0;
 }
 
 $this->setProperty('flag', 1);
@@ -24,12 +29,9 @@ $presets = array(
 
 if (isset($presets[$newCct])) {
     $newCct = $presets[$newCct];
-} elseif ($newCct >= 0 && $newCct <= 100) {
-    //$newCct = $newCct;
-} elseif ($cctSeved) {
-    $newCct = $cctSeved;
-} else {
-    $newCct = 0;
+}
+if (is_numeric($newCct) && $newCct >= 0 && $newCct <= 100) {
+    $this->setProperty('cctLevel', $newCct);
 }
 
-$this->setProperty('cctLevel', $newCct);
+
