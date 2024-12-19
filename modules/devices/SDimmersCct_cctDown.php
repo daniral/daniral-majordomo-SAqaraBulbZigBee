@@ -1,12 +1,12 @@
 <?php
 /*
-Уменьшить температуру.(array("value"=>0--100)). Без  параметров -10.
+Уменьшить температуру.(array("value"=>1--100)). Без  параметров -10.
 */
 
 $inc;
 $cctLevel = $this->getProperty('cctLevel');
 
-if (isset($params[value]) && $params[value] >= 0 && $params[value] <= 100) {
+if (isset($params[value]) && $params[value] > 0 && $params[value] <= 100) {
   $inc = $params[value] * -1;
 } else {
   $inc = -10;
@@ -14,8 +14,8 @@ if (isset($params[value]) && $params[value] >= 0 && $params[value] <= 100) {
 
 $cctLevel += $inc;
 
-if ($cctLevel < 0) {
-  $cctLevel = 0;
+if ($cctLevel < 1) {
+  $cctLevel = 1;
 }
 
 if ($cctLevel == $this->getProperty('cctLevel')) {

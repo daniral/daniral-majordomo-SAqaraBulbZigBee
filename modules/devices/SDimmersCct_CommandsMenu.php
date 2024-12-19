@@ -356,7 +356,7 @@ $Record['MAX_VALUE']=100;
 $Record['CUR_VALUE']='0';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='dayCctLevel';
+$Record['LINKED_PROPERTY']='dayCct';
 $R19=SQLInsert('commands', $Record);
 //Menu-26
 $Record = Array();
@@ -372,7 +372,7 @@ $Record['MAX_VALUE']=100;
 $Record['CUR_VALUE']='100';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='nightCctLevel';
+$Record['LINKED_PROPERTY']='nightCct';
 $R21=SQLInsert('commands', $Record);
 //Menu-27
 $Record = Array();
