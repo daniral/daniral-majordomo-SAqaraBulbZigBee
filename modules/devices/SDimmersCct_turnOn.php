@@ -149,13 +149,12 @@ if ($this->getProperty('sunsetTime') == '') $this->setProperty('sunsetTime', $th
 
 $dayBegin;
 $nightBegin;
-
 $level = isset($params['level']) && $params['level'] > 0 && $params['level'] <= 100 ? $params['level'] : 0;
 $cctLevel = isset($params['cctLevel']) && $params['cctLevel'] >= 0 && $params['cctLevel'] <= 100 ? $params['cctLevel'] : 0;
 $autoMode = isset($params['autoMode']) && $params['autoMode'] == 1 ? 1 : 0;
 
 if (!$autoMode) {
-  
+
   if ($level) {
     $this->callMethod('setLevel', $level);
   } else {
@@ -173,7 +172,7 @@ if ($autoMode && !$this->getProperty('flag')) {
   if ($this->getProperty('bySunTime') && $this->getProperty('sunriseTime') != '' && $this->getProperty('sunsetTime') != '') {
     $dayBegin = $this->edit_time($this->getProperty('sunriseTime'), $this->getProperty('addTimeSunrise'), $this->getProperty('signSunrise'));
     $nightBegin = $this->edit_time($this->getProperty('sunsetTime'), $this->getProperty('addTimeSunset'), $this->getProperty('signSunset'));
-  } else if (!$this->getProperty('bySensor')) { 
+  } else if (!$this->getProperty('bySensor')) {
     $dayBegin = $this->getProperty('dayBegin');
     $nightBegin = $this->getProperty('nightBegin');
   }
@@ -181,16 +180,16 @@ if ($autoMode && !$this->getProperty('flag')) {
     if (($this->getProperty('workInDai') == '2' || $this->getProperty('workInDai') == '0') && !$this->getProperty('bySensor') && timeBetween($nightBegin, $dayBegin)) {
       $this->setProperty('level', $level ? $level : $this->getProperty('nightLevel'));
       $this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('nightCct'));
-	  $this->callMethod('AutoOFF');
+      $this->callMethod('AutoOFF');
     } else if (($this->getProperty('workInDai') == '1' || $this->getProperty('workInDai') == '0') && !$this->getProperty('bySensor') && timeBetween($dayBegin, $nightBegin)) {
       $this->setProperty('level', $level ? $level : $this->getProperty('dayLevel'));
       $this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('dayCct'));
-	  $this->callMethod('AutoOFF');
+      $this->callMethod('AutoOFF');
     } else if (($this->getProperty('bySensor') && $this->getProperty('illuminance') <= $this->getProperty('illuminanceMax')) || $this->getProperty('illuminanceFlag')) {
       $this->setProperty('level', $level ? $level : $this->getProperty('nightLevel'));
       $this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('nightCct'));
       $this->setProperty('illuminanceFlag', 1);
-	  $this->callMethod('AutoOFF');
+      $this->callMethod('AutoOFF');
     }
   }
   function edit_time($time, $addTime, $sign)
