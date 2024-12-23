@@ -156,12 +156,12 @@ $autoMode = isset($params['autoMode']) && $params['autoMode'] == 1 ? 1 : 0;
 if (!$autoMode) {
 
   if ($level) {
-    $this->callMethod('setLevel', $level);
+    $this->callMethod('setLevel', array('value' => $level));
   } else {
     $this->callMethod('setLevel');
   }
   if ($cctLevel) {
-    $this->callMethod('setCct', $cctLevel);
+    $this->callMethod('setCct', array('value' => $cctLevel));
   } else {
     $this->callMethod('setCct');
   }
@@ -170,8 +170,8 @@ if (!$autoMode) {
 
 if ($autoMode && !$this->getProperty('flag')) {
   if ($this->getProperty('bySunTime') && $this->getProperty('sunriseTime') != '' && $this->getProperty('sunsetTime') != '') {
-    $dayBegin = $this->edit_time($this->getProperty('sunriseTime'), $this->getProperty('addTimeSunrise'), $this->getProperty('signSunrise'));
-    $nightBegin = $this->edit_time($this->getProperty('sunsetTime'), $this->getProperty('addTimeSunset'), $this->getProperty('signSunset'));
+    $dayBegin = edit_time($this->getProperty('sunriseTime'), $this->getProperty('addTimeSunrise'), $this->getProperty('signSunrise'));
+    $nightBegin = edit_time($this->getProperty('sunsetTime'), $this->getProperty('addTimeSunset'), $this->getProperty('signSunset'));
   } else if (!$this->getProperty('bySensor')) {
     $dayBegin = $this->getProperty('dayBegin');
     $nightBegin = $this->getProperty('nightBegin');
@@ -190,14 +190,15 @@ if ($autoMode && !$this->getProperty('flag')) {
     }
     $this->callMethod('AutoOFF');
   }
-  function edit_time($time, $addTime, $sign)
-  {
-    $part = explode(':', $addTime);
-    $addTime_sec = $part[0] * 3600 + $part[1] * 60 + $part[2];
-    if (!$sign) {
-      $addTime_sec = $addTime_sec * -1;
-    }
-    $res = strtotime($time) + $addTime_sec;
-    return date('H:i', $res);
+}
+
+function edit_time($time, $addTime, $sign)
+{
+  $part = explode(':', $addTime);
+  $addTime_sec = $part[0] * 3600 + $part[1] * 60 + $part[2];
+  if (!$sign) {
+    $addTime_sec = $addTime_sec * -1;
   }
+  $res = strtotime($time) + $addTime_sec;
+  return date('H:i', $res);
 }
