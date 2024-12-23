@@ -5,7 +5,7 @@
 */
 
 $levelNew = $params['NEW_VALUE'];
-$levelOld = $this->getProperty('level');
+$levelOld = $params['OLD_VALUE'];
 $minWork = $this->getProperty('minWork');
 $maxWork = $this->getProperty('maxWork');
 
@@ -13,7 +13,7 @@ if ($levelNew == $levelOld || $levelNew < 0 || $levelNew > 100) return;
 
 if ($minWork != $maxWork) {
     $levelWork = round($minWork + round(($maxWork - $minWork) * $levelNew / 100));
-    if ($levelNew == 0) {
+    if ($levelWork == 0) {
         $this->setProperty('flag', 0);
         $this->setProperty('illuminanceFlag', 0);
     }

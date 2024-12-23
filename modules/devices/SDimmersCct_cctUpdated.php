@@ -6,7 +6,7 @@
 */
 
 $cctNew = strtolower($params['NEW_VALUE']);
-$cctOld = $this->getProperty('cctLevel');
+$cctOld = strtolower($params['OLD_VALUE']);
 $cctMinWork = $this->getProperty('cctMinWork');
 $cctMaxWork = $this->getProperty('cctMaxWork');
 $levelSaved = $this->getProperty('levelSaved');
@@ -19,14 +19,23 @@ $presets = array(
 
 if (isset($presets[$cctNew])) {
     $cctNew = $presets[$cctNew];
+	$this->setProperty('cctLevel', $cctNew);
+}elseif (!is_numeric($cctNew)) {
+	$cctNew=$cctOld;
+	$this->setProperty('cctLevel', $cctNew);
 }
 
-if ($cctNew == $cctOld || $cctNew < 0 || $cctNew > 100) return;
+if($cctNew < 0) {
+	$cctNew = 0;
+	$this->setProperty('cctLevel', $cctNew);
+}elseif($cctNew > 100) {
+	$cctNew = 100;
+	$this->setProperty('cctLevel', $cctNew);
+}
 
-if ($cctMinWork != $cctMaxWork) {
+if ($cctMinWork != $cctMaxWork && $cctNew != $cctOld) {
 	$cctLevelWork = round($cctMinWork + round(($cctMaxWork - $cctMinWork) * $cctNew / 100));
 	$this->setProperty('cctWork', $cctLevelWork);
-	
 	if ($this->getProperty('flag')) {
 		$this->setProperty('cctSeved', $cctNew); 
 	}

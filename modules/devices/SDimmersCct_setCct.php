@@ -6,7 +6,6 @@
 Вместо процентов можно вызвать пресеты:'cool','neutral','warm'.
 */
 
-if (!$params['value']) return;
+if (!isset($params['value'])) return;
 $this->setProperty('flag', 1);
-$this->setProperty('cctLevel', $params['value']);
-
+$this->setProperty('cctLevel', strtolower($params['value']));

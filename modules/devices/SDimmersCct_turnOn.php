@@ -45,6 +45,7 @@
 - callMethod('имя объекта.turnOn', array('level'=> 1<-->100, 'cctLevel'=> 0<-->100));  
 - callMethod('имя объекта.turnOn', array('level'=> 1<-->100));  
 - callMethod('имя объекта.turnOn', array('cctLevel'=> 0<-->100));  
+  - Вместо процентов можно вызвать пресеты:'cool','neutral','warm'.   
 
 **Устанавливается flag=1. Стопер который не дает запускаться авто режиму и методу AutoOFF.**  
 
@@ -93,11 +94,13 @@
       - callMethod('имя объекта.turnOn', array('level'=> 1<-->100, 'cctLevel'=> 0<-->100));  
       - callMethod('имя объекта.turnOn', array('level'=> 1<-->100));  
       - callMethod('имя объекта.turnOn', array('cctLevel'=> 0<-->100));  
+      - Вместо процентов можно вызвать пресеты:'cool','neutral','warm'.   
   - Включить авто режим - callMethod('имя объекта.turnOn', array('autoMode'=>1));   
     - С параметрами:
       - callMethod('имя объекта.turnOn', array('autoMode'=>1, 'level'=> 1<-->100, 'cctLevel'=> 0<-->100));  
       - callMethod('имя объекта.turnOn', array('autoMode'=>1, 'level'=> 1<-->100));  
       - callMethod('имя объекта.turnOn', array('autoMode'=>1, 'cctLevel'=> 0<-->100));  
+      - Вместо процентов можно вызвать пресеты:'cool','neutral','warm'.   
 - **turnOff**  
   - Выключить - callMethod('имя объекта '.'turnOff');  
     - Устанавливается flag = 0
