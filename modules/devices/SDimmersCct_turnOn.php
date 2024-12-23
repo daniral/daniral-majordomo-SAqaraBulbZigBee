@@ -147,23 +147,29 @@ if ($this->getProperty('signSunset') == '') $this->setProperty('signSunset', '1'
 if ($this->getProperty('sunriseTime') == '') $this->setProperty('sunriseTime', $this->getProperty('dayBegin'));
 if ($this->getProperty('sunsetTime') == '') $this->setProperty('sunsetTime', $this->getProperty('nightBegin'));
 
-$dayBegin;
-$nightBegin;
 $level = isset($params['level']) && $params['level'] > 0 && $params['level'] <= 100 ? $params['level'] : 0;
+$levelSaved = $this->getProperty('levelSaved');
 $cctLevel = isset($params['cctLevel']) && $params['cctLevel'] >= 0 && $params['cctLevel'] <= 100 ? $params['cctLevel'] : 0;
+$cctSeved = $this->getProperty('cctSeved');
 $autoMode = isset($params['autoMode']) && $params['autoMode'] == 1 ? 1 : 0;
 
-if (!$autoMode) {
+$dayBegin;
+$nightBegin;
 
+if (!$autoMode) {
   if ($level) {
     $this->callMethod('setLevel', array('value' => $level));
+  } elseif ($levelSaved) {
+    $this->callMethod('setLevel', array('value' => $levelSaved));
   } else {
-    $this->callMethod('setLevel');
+    $this->callMethod('setLevel', array('value' => 100));
   }
   if ($cctLevel) {
     $this->callMethod('setCct', array('value' => $cctLevel));
+  } elseif ($cctSeved) {
+    $this->callMethod('setCct', array('value' => $cctSeved));
   } else {
-    $this->callMethod('setCct');
+    $this->callMethod('setCct', array('value' => 0));
   }
   return;
 }

@@ -5,16 +5,22 @@
 */
 
 $levelNew = $params['NEW_VALUE'];
+$levelOld = $this->getProperty('level');
 $minWork = $this->getProperty('minWork');
 $maxWork = $this->getProperty('maxWork');
 
-if ($levelNew < 0 || $levelNew > 100) return;
+if ($levelNew == $levelOld || $levelNew < 0 || $levelNew > 100) return;
 
 if ($minWork != $maxWork) {
-    $brightLevelWork = round($minWork + round(($maxWork - $minWork) * $levelNew / 100));
-	$this->setProperty('levelWork', $brightLevelWork);
-	
+    $levelWork = round($minWork + round(($maxWork - $minWork) * $levelNew / 100));
+    if ($levelNew == 0) {
+        $this->setProperty('flag', 0);
+        $this->setProperty('illuminanceFlag', 0);
+    }
+    $this->setProperty('levelWork', $levelWork);
+
     if ($levelNew > 0 && $this->getProperty('flag')) {
         $this->setProperty('levelSaved', $levelNew);
     }
 }
+
