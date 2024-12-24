@@ -13,7 +13,9 @@ if ($levelNew == $levelOld || $levelNew < 0 || $levelNew > 100) return;
 
 if ($minWork != $maxWork) {
     $levelWork = round($minWork + round(($maxWork - $minWork) * $levelNew / 100));
-    if ($levelWork == 0) {
+    if($levelWork > 0) {
+		$this->setProperty('status', 1);
+	}else {
         $this->callMethod('turnOff');
         //$this->setProperty('flag', 0);
         //$this->setProperty('illuminanceFlag', 0);
