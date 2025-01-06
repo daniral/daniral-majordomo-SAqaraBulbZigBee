@@ -16,8 +16,7 @@
 - **cctWork - color_temp лампочки.**  
   - Добавить Путь (write): zigbee2mqtt/Название устройства/set/color_temp  
 - **status - state лампочки.**  
-  - В статус не добовляем путь(write) так как он нужен только для обратной связи  
-    что бы знать включена или нет лапочка для сцен или кнопок.  
+  - Добавить Путь (write): zigbee2mqtt/Название устройства/set/state  
   - Написать в Replace list: ON=1,OFF=0  
   - Указать минимальные и максимальные рабочие уровни для яркости и теплоты:  
 
@@ -224,14 +223,13 @@ if ($autoMode && !$this->getProperty('flag')) {
   }
 }
 
-if (!function_exists('edit_time')) {
-	function edit_time($time, $addTime, $sign) {
-		$part = explode(':', $addTime);
-		$addTime_sec = $part[0] * 3600 + $part[1] * 60 + $part[2];
-		if (!$sign) {
-			$addTime_sec = $addTime_sec * -1;
-		}
-		$res = strtotime($time) + $addTime_sec;
-		return date('H:i', $res);
-	}
+function edit_time($time, $addTime, $sign)
+{
+  $part = explode(':', $addTime);
+  $addTime_sec = $part[0] * 3600 + $part[1] * 60 + $part[2];
+  if (!$sign) {
+    $addTime_sec = $addTime_sec * -1;
+  }
+  $res = strtotime($time) + $addTime_sec;
+  return date('H:i', $res);
 }

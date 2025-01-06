@@ -6,9 +6,12 @@
 $inc;
 $level = $this->getProperty('level');
 
-if (isset($params['value']) && $params['value'] > 0 && $params['value'] <= 100) {
-  $inc = $params['value'] * -1;
-} else {
+if (isset($params['value']) && is_numeric($params['value'])) {
+  $inc = $params['value'];
+  if ($inc < 1) $inc *= -1;
+  if ($inc > 100) $inc = 100;
+  $inc *= -1;
+}else {
   $inc = -10;
 }
 
@@ -16,10 +19,6 @@ $level += $inc;
 
 if ($level < 0) {
   $level = 0;
-}
-
-if ($level == $this->getProperty('level')) {
-  return;
 }
 
 $this->callMethod('setLevel', array('value' => $level));

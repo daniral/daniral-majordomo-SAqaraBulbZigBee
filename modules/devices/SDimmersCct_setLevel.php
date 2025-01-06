@@ -5,14 +5,9 @@
 Установить яркость света.(array("value"=> 0 <--> 100 %))
 */
 
-if (!isset($params['value']) || !is_numeric($params['value']) || $params['value'] < 0 || $params['value'] > 100) return;
-if ($params['value'] > 0) {
-    $this->setProperty('flag', 1);
-} else {
-    $this->callMethod('turnOff');
-    return;
-    //$this->setProperty('flag', 0);
-    //$this->setProperty('illuminanceFlag', 0);
-}
-
-$this->setProperty('level', $params['value']);
+if (!isset($params['value']) || !is_numeric($params['value'])) return;
+$newValue=$params['value'];
+if ($newValue < 0) $newValue=0;
+if ($newValue > 100) $newValue=100;
+$this->setProperty('flag', 1);
+$this->setProperty('level', $newValue);

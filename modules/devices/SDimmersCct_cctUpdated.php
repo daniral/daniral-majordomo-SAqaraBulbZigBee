@@ -19,21 +19,16 @@ $presets = array(
 
 if (isset($presets[$cctNew])) {
     $cctNew = $presets[$cctNew];
-	$this->setProperty('cctLevel', $cctNew);
 }elseif (!is_numeric($cctNew)) {
 	$cctNew=$cctOld;
-	$this->setProperty('cctLevel', $cctNew);
 }
 
-if($cctNew < 0) {
-	$cctNew = 0;
-	$this->setProperty('cctLevel', $cctNew);
-}elseif($cctNew > 100) {
-	$cctNew = 100;
-	$this->setProperty('cctLevel', $cctNew);
-}
+if($cctNew < 0) $cctNew = 0;
+if($cctNew > 100) $cctNew = 100;
 
-if ($cctMinWork != $cctMaxWork && $cctNew != $cctOld) {
+$this->setProperty('cctLevel', $cctNew);
+
+if ($cctMinWork != $cctMaxWork) {
 	$cctLevelWork = round($cctMinWork + round(($cctMaxWork - $cctMinWork) * $cctNew / 100));
 	$this->setProperty('cctWork', $cctLevelWork);
 	if ($this->getProperty('flag')) {

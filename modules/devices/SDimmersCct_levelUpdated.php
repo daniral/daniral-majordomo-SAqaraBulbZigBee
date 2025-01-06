@@ -9,19 +9,15 @@ $levelOld = $params['OLD_VALUE'];
 $minWork = $this->getProperty('minWork');
 $maxWork = $this->getProperty('maxWork');
 
-if ($levelNew == $levelOld || $levelNew < 0 || $levelNew > 100) return;
+if ($levelNew < 0 || $levelNew > 100) return;
 
 if ($minWork != $maxWork) {
     $levelWork = round($minWork + round(($maxWork - $minWork) * $levelNew / 100));
     if($levelWork > 0) {
-		$this->setProperty('status', 1);
+		$this->setProperty('levelWork', $levelWork);
 	}else {
         $this->callMethod('turnOff');
-        //$this->setProperty('flag', 0);
-        //$this->setProperty('illuminanceFlag', 0);
     }
-    $this->setProperty('levelWork', $levelWork);
-
     if ($levelNew > 0 && $this->getProperty('flag')) {
         $this->setProperty('levelSaved', $levelNew);
     }

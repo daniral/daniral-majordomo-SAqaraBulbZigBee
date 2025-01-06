@@ -6,10 +6,10 @@
 Если было выключено включет то что в levelSaved и cctSeved.
 */
 
-if (!$this->getProperty('level') && !$this->getProperty('flag')) {
+if (!$this->getProperty('status') && !$this->getProperty('flag')) {
   $this->callMethod('turnOn');
-} else if ($this->getProperty('level') && !$this->getProperty('flag')) {
+} else if ($this->getProperty('status') && !$this->getProperty('flag')) {
   $this->callMethod('turnOn');
-} else if ($this->getProperty('level') && $this->getProperty('flag')) {
+} else if ($this->getProperty('status') && $this->getProperty('flag')) {
   $this->callMethod('turnOff');
 }

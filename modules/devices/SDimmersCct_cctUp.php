@@ -6,20 +6,18 @@
 $inc;
 $cctLevel = $this->getProperty('cctLevel');
 
-if (isset($params['value']) && $params['value'] > 0 && $params['value'] <= 100) {
+if (isset($params['value']) && is_numeric($params['value'])) {
   $inc = $params['value'];
-} else {
-  $inc = '10';
+  if ($inc < 1) $inc *= -1;
+  if ($inc > 100) $inc = 100;
+}else {
+  $inc = 10;
 }
 
 $cctLevel += $inc;
 
 if ($cctLevel > 100) {
   $cctLevel = 100;
-}
-
-if ($cctLevel == $this->getProperty('cctLevel')) {
-  return;
 }
 
 $this->callMethod('setCct', array('value' => $cctLevel));
