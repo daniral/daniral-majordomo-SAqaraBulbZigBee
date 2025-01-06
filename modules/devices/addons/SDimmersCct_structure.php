@@ -41,8 +41,8 @@ $this->device_types['dimmer'] = array(
 		'nightCct' => array('DESCRIPTION' => 'Уровень температуры днем (1<-->100)'),
 
 		'levelWork' => array('DESCRIPTION' => 'Рабочая яркость.', '_CONFIG_TYPE' => 'num'),
-		'levelSaved' => array('DESCRIPTION' => 'Сохраненная(предыдущая) яркость.', '_CONFIG_TYPE' => 'num'),
 		'cctWork' => array('DESCRIPTION' => 'Рабочая теплота.',  '_CONFIG_TYPE' => 'num'),
+		'levelSaved' => array('DESCRIPTION' => 'Сохраненная(предыдущая) яркость.', '_CONFIG_TYPE' => 'num'),
 		'cctSeved' => array('DESCRIPTION' => 'Сохраненная(предыдущая) теплота.', '_CONFIG_TYPE' => 'num'),
 		'maxWork' => array('DESCRIPTION' => 'Максимальная рабочая яркость.', '_CONFIG_TYPE' => 'num'),
 		'minWork' => array('DESCRIPTION' => 'Минимальная рабочая яркость.', '_CONFIG_TYPE' => 'num'),
