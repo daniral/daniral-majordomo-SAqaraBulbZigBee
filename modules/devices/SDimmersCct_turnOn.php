@@ -138,7 +138,6 @@
 И на потолочной лампе [Tuta ZigBee](https://www.zigbee2mqtt.io/devices/ZB-LZD10-RCW.html#moes-zb-lzd10-rc "zigbee2mqtt.io")  
 
 */
-DebMes("asd");
 if ($this->getProperty('dayLevel') == '') $this->setProperty('dayLevel', '100');
 if ($this->getProperty('dayCct') == '') $this->setProperty('dayCct', '0');
 if ($this->getProperty('nightLevel') == '') $this->setProperty('nightLevel', '10');
