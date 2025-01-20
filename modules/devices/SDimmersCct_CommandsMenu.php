@@ -50,7 +50,7 @@ $Record['MAX_VALUE']=100;
 $Record['CUR_VALUE']='50';
 $Record['STEP_VALUE']=1;
 $Record['LINKED_OBJECT']=$objctName;
-$Record['LINKED_PROPERTY']='brightness';
+$Record['LINKED_PROPERTY']='level';
 $Record['CODE']='callMethod(\''.$objctName.'.setLevel\', array(\'value\' => $new_value));';
 $Record['READ_ONLY']='1';
 $R2=SQLInsert('commands', $Record);
