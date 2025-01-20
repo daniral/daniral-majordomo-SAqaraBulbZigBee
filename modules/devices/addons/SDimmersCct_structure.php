@@ -18,11 +18,9 @@ $this->device_types['dimmer'] = array(
 		'sunriseTime' => array('DESCRIPTION' => 'Время восхода солнца.'),
 		'sunsetTime' => array('DESCRIPTION' => 'Время захода солнца.'),
 		'autoOnOff' => array('DESCRIPTION' => 'Автовключение: 0-не включать 1-включать'),
-		'timerOFF' => array('DESCRIPTION' => 'Задержка перед выключением(сек). 0-не выключать.'),
-
+		'timerOff' => array('DESCRIPTION' => 'Задержка перед выключением(сек). 0-не выключать.'),
 		'workingDay' => array('DESCRIPTION' => 'работать: 0-24 часа. 1-Днем. 2-Ночью.'),
 		'workingBy' => array('DESCRIPTION' => 'Включать по : 1-Времени. 2-Солнцу. 3-Датчику.'),
-
 		'dayBegin' => array('DESCRIPTION' => 'Начало режима день (hh:mm)'),
 		'nightBegin' => array('DESCRIPTION' => 'Начало режима ночь (hh:mm)'),
 		'presence' => array('DESCRIPTION' => 'Данные с датчика присутствия', 'ONCHANGE' => 'presenceUpdated', 'DATA_KEY' => 1),
@@ -31,15 +29,12 @@ $this->device_types['dimmer'] = array(
 		'illuminance' => array('DESCRIPTION' => 'Данные с датчика освещения.', 'DATA_KEY' => 1),
 		'illuminanceMax' => array('DESCRIPTION' => 'Максимальное освещение.Если меньше включается свет.'),
 		'status' => array('DESCRIPTION' => 'Статус', 'ONCHANGE' => 'statusUpdated'),
-
 		'level' => array('DESCRIPTION' => 'Яркость (0<-->100)', 'ONCHANGE' => 'levelUpdated', 'DATA_KEY' => 1),
 		'cctLevel' => array('DESCRIPTION' => 'Уровень температуры: (0<-->100)', 'ONCHANGE' => 'cctUpdated', 'DATA_KEY' => 1),
-
 		'dayLevel' => array('DESCRIPTION' => 'Уровень яркости днем (1<-->100)'),
 		'dayCct' => array('DESCRIPTION' => 'Уровень температуры днем (1<-->100)'),
 		'nightLevel' => array('DESCRIPTION' => 'Уровень яркости ночью(1<-->100)'),
 		'nightCct' => array('DESCRIPTION' => 'Уровень температуры днем (1<-->100)'),
-
 		'levelWork' => array('DESCRIPTION' => 'Рабочая яркость.', '_CONFIG_TYPE' => 'num'),
 		'cctWork' => array('DESCRIPTION' => 'Рабочая теплота.',  '_CONFIG_TYPE' => 'num'),
 		'levelSaved' => array('DESCRIPTION' => 'Сохраненная(предыдущая) яркость.', '_CONFIG_TYPE' => 'num'),

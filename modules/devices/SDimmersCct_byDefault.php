@@ -13,7 +13,7 @@ $this->setProperty('signSunset', '1');
 $this->setProperty('sunriseTime', '');
 $this->setProperty('sunsetTime', '');
 $this->setProperty('autoOnOff', '1');
-$this->setProperty('timerOFF', '120');
+$this->setProperty('timerOff', '120');
 $this->setProperty('workingDay', '2');
 $this->setProperty('workingBy', '1');
 $this->setProperty('dayBegin', '08:00');
