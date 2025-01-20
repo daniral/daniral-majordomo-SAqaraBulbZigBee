@@ -46,16 +46,16 @@
 - callMethod('имя объекта.turnOn', array('cctLevel'=> 0<-->100));  
   - Вместо процентов можно вызвать пресеты:'cool','neutral','warm'.   
 
-**Устанавливается flag=1. Стопер который не дает запускаться авто режиму и методу AutoOFF.**  
+**Устанавливается flag=1. Стопер который не дает запускаться авто режиму и методу AutoOff.**  
 
 ### **АВТО РЕЖИМ:**  
 
 Включить авто режим - callMethod('имя объекта.turnOn', array('autoMode'=>1)) - к пимеру запускать по датчику движения;   
 - Включится на время которое указано в timerOFF(сек). Если 0 то включится но сам не выключится.  
 - Если в presence(например данные с датчика присутствия) 1 то не выключится.  
-  - Как только в presence изменися с 1 на 0 запустится метод автовыключения(AutoOFF).    
+  - Как только в presence изменися с 1 на 0 запустится метод автовыключения(AutoOff).    
 - Можно включать авто режим для Дня, Ночи или в течении всего деня.   
-  - если в workInDai:   
+  - если в workingDay:   
     + 0 - Весь день.(Ночью ночные установки яркости и теплоты. Днем дневные.)  
     + 1 - Днем  (дневные установки)  
     + 2 - Ночью  (ночные установки)  
@@ -88,7 +88,7 @@
   - Включить - callMethod('имя объекта '.'turnOn');  
     - Если без параметров установит то что в levelSaved и cctSeved.  
     - Если levelSaved и cctSeved пусто то на полную яркость(100%) и холодный цвет(0%).  
-    - **Устанавливается flag=1. Стопер который не дает запускаться авто режиму и методу AutoOFF.**  
+    - **Устанавливается flag=1. Стопер который не дает запускаться авто режиму и методу AutoOff.**  
     - С параметрами:  
       - callMethod('имя объекта.turnOn', array('level'=> 1<-->100, 'cctLevel'=> 0<-->100));  
       - callMethod('имя объекта.turnOn', array('level'=> 1<-->100));  
@@ -156,10 +156,8 @@ if ($this->getProperty('flag') == '') $this->setProperty('flag', '0');
 if ($this->getProperty('illuminanceFlag') == '') $this->setProperty('illuminanceFlag', '0');
 if ($this->getProperty('illuminance') == '') $this->setProperty('illuminance', '0');
 if ($this->getProperty('illuminanceMax') == '') $this->setProperty('illuminanceMax', '0');
-if ($this->getProperty('bySensor') == '') $this->setProperty('bySensor', '0');
-if ($this->getProperty('byManually') == '') $this->setProperty('byManually', '1');
-if ($this->getProperty('bySunTime') == '') $this->setProperty('bySunTime', '0');
-if ($this->getProperty('workInDai') == '') $this->setProperty('workInDai', '2');
+if ($this->getProperty('workingDay') == '') $this->setProperty('workingDay', '2');
+if ($this->getProperty('workingBy') == '') $this->setProperty('workingBy', '1');
 if ($this->getProperty('addTimeSunrise') == '') $this->setProperty('addTimeSunrise', '00:00');
 if ($this->getProperty('addTimeSunset') == '') $this->setProperty('addTimeSunset', '00:00');
 if ($this->getProperty('signSunrise') == '') $this->setProperty('signSunrise', '1');
@@ -200,26 +198,26 @@ if (!$autoMode) {
 }
 
 if ($autoMode && !$this->getProperty('flag')) {
-  if ($this->getProperty('bySunTime') && $this->getProperty('sunriseTime') != '' && $this->getProperty('sunsetTime') != '' && $this->getProperty('sunriseTime') != $this->getProperty('sunsetTime')) {
+  if ($this->getProperty('workingBy') == '2' && $this->getProperty('sunriseTime') != '' && $this->getProperty('sunsetTime') != '' && $this->getProperty('sunriseTime') != $this->getProperty('sunsetTime')) {
     $dayBegin = edit_time($this->getProperty('sunriseTime'), $this->getProperty('addTimeSunrise'), $this->getProperty('signSunrise'));
     $nightBegin = edit_time($this->getProperty('sunsetTime'), $this->getProperty('addTimeSunset'), $this->getProperty('signSunset'));
-  } else if (!$this->getProperty('bySensor')) {
+  } else if ($this->getProperty('workingBy') != '3') {
     $dayBegin = $this->getProperty('dayBegin');
     $nightBegin = $this->getProperty('nightBegin');
   }
   if ($this->getProperty('autoOnOff')) {
-    if (($this->getProperty('workInDai') == '2' || $this->getProperty('workInDai') == '0') && !$this->getProperty('bySensor') && timeBetween($nightBegin, $dayBegin)) {
+    if (($this->getProperty('workingDay') == '2' || $this->getProperty('workingDay') == '0') && $this->getProperty('workingBy') != '3' && timeBetween($nightBegin, $dayBegin)) {
       $this->setProperty('level', $level ? $level : $this->getProperty('nightLevel'));
       $this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('nightCct'));
-    } else if (($this->getProperty('workInDai') == '1' || $this->getProperty('workInDai') == '0') && !$this->getProperty('bySensor') && timeBetween($dayBegin, $nightBegin)) {
+    } else if (($this->getProperty('workingDay') == '1' || $this->getProperty('workingDay') == '0') && $this->getProperty('workingBy') != '3' && timeBetween($dayBegin, $nightBegin)) {
       $this->setProperty('level', $level ? $level : $this->getProperty('dayLevel'));
       $this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('dayCct'));
-    } else if (($this->getProperty('bySensor') && $this->getProperty('illuminance') <= $this->getProperty('illuminanceMax')) || $this->getProperty('illuminanceFlag')) {
+    } else if (($this->getProperty('workingBy') == '3' && $this->getProperty('illuminance') <= $this->getProperty('illuminanceMax')) || $this->getProperty('illuminanceFlag')) {
       $this->setProperty('level', $level ? $level : $this->getProperty('nightLevel'));
       $this->setProperty('cctLevel', $cctLevel ? $cctLevel : $this->getProperty('nightCct'));
       $this->setProperty('illuminanceFlag', 1);
     }
-    $this->callMethod('AutoOFF');
+    $this->callMethod('AutoOff');
   }
 }
 
